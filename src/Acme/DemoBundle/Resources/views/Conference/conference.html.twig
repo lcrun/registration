@@ -1,0 +1,25 @@
+{% extends 'TwigBundle::layout.html.twig' %}
+
+{% block title %}Conference{% endblock %}
+
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block body %}
+    <div><h1> 新建会议</h1></div>
+    
+    <form action="{{ path('_new_conference') }}" method="POST">
+        {{ form_widget(form) }}
+        
+        <div>
+            <input type="submit" value="submit" />
+        </div>
+    </form>
+        
+    {%for conf in conferences%}
+        {{conf.getId}} -- {{conf.conferenceName}} -- {{conf.detail}}  <a href="/delete/{{conf.getId}}">删除</a><br>
+    {%endfor%}
+{% endblock %}
+
+{% block javascripts %}{% endblock %}

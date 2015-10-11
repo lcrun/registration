@@ -1,0 +1,30 @@
+Acme\DemoBundle\Entity\SignUp:
+    type: entity
+    table: sign_up
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        signUpDate:
+            type: datetime
+            
+    manyToOne:
+        user:
+            targetEntity: User
+            inversedBy: signUps
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+
+        conference:
+            targetEntity: Conference
+            inversedBy: signUps
+            joinColumn:
+                name: conference_id
+                referencedColumnName: id
+      
+            
+    lifecycleCallbacks: {  }
