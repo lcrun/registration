@@ -37,12 +37,14 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        site_name: 报名系统
 
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    bundles:        [ AcmeDemoBundle, FOSUserBundle, AcmeUserBundle]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -94,7 +96,7 @@ fos_user:
         sender_name:    lcrun
     profile:
         form:
-            type:               fos_user_profile
+            type:               acme_user_profile
             name:               fos_user_profile_form
             validation_groups:  [Profile, Default]
     change_password:
@@ -110,7 +112,7 @@ fos_user:
             enabled:    true
             template:   FOSUserBundle:Registration:email.txt.twig
         form:
-            type:               fos_user_registration
+            type:               acme_user_registration
             name:               fos_user_registration_form
             validation_groups:  [Registration, Default]
     resetting:

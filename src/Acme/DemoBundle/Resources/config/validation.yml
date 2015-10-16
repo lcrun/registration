@@ -1,7 +1,8 @@
-# src/AppBundle/Resources/config/validation.yml
+# src/Acme/DemoBundle/Resources/config/validation.yml
 Acme\DemoBundle\Entity\SignUp:
     constraints:
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
             fields: [user,conference]
             errorPath: user
             message: 'This user is already sign up in that conference.'    
+            ignoreNull: false

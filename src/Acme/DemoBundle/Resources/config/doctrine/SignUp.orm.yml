@@ -25,6 +25,9 @@ Acme\DemoBundle\Entity\SignUp:
             joinColumn:
                 name: conference_id
                 referencedColumnName: id
-      
+                
+    uniqueConstraints:
+            sign_up_message:
+                columns: user_id,conference_id
             
     lifecycleCallbacks: {  }

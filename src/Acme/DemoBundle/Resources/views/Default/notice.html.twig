@@ -1,0 +1,30 @@
+{% extends "AcmeDemoBundle::layout.html.twig" %}
+
+{% set target = 'notice' %}
+
+{% block stylesheets_child %}
+    
+{% endblock %}
+
+{% block content %}
+
+    <div class="content">
+        <br>
+        <pre>
+        <center><b>报名须知</b></center>
+
+        1.每个邮箱只能使用一次
+
+        2.
+
+        3.
+        
+<a href="/register"  class="button button-rounded button-flat2">注册新用户</a>   <a href="{{ path('fos_user_security_login') }}"      class="button button-rounded button-flat2">登录账户</a>
+        {% image '@AcmeDemoBundle/Resources/public/images/liantu.png' %}
+        <img class="liantu" src="{{ asset_url }}" alt="LOGO"/>
+        {% endimage %}
+        </pre>
+    </div>
+
+
+{% endblock %}

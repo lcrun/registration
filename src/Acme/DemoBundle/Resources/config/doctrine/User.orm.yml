@@ -6,7 +6,28 @@ Acme\DemoBundle\Entity\User:
             type: integer
             generator:
                 strategy: AUTO
+    fields:          
+        gender:
+            type: string
+            
+        company:
+            type: string
+            length: '100'  
+           
+        position:
+            type: string
+            length: '100'   
+            
+        address:
+            type: string
+            length: '100'   
+            
+        phone:
+            type: string
+            length: '20' 
+        
     oneToMany:
         signUps:
             targetEntity: SignUp
             mappedBy: user
+    

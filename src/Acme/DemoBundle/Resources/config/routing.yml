@@ -1,22 +1,36 @@
 acme_demo_homepage:
-    path:     /hello/{name}
+    path:     /
     defaults: { _controller: AcmeDemoBundle:Default:index }
+    
+acme_demo_connact_us:
+    path:     /connact
+    defaults: { _controller: AcmeDemoBundle:Default:connact}
+    
 _mail:
     path:     /mail/{name}
     defaults: { _controller: AcmeDemoBundle:Default:mail }
+ 
+_notice:
+    path:    /notice
+    defaults: { _controller: AcmeDemoBundle:Default:notice }
+    
 _new_conference:
-    path:     /new
+    path:    /admin/new
     defaults: { _controller: AcmeDemoBundle:Conference:new}
     
 _delete_conference:
-    path:     /delete/{id}
+    path:     /admin/delete/{id}
     defaults: { _controller: AcmeDemoBundle:Conference:delete}
     
 _sign_show:
     path:     /signshow
     defaults: { _controller: AcmeDemoBundle:SignUp:signShow}
   
-    
+
 _sign_up:
     path:     /signup/{id}
     defaults: { _controller: AcmeDemoBundle:SignUp:sign}
+    
+_dissign:
+    path:     /dissign/{id}
+    defaults: { _controller: AcmeDemoBundle:SignUp:dissign}

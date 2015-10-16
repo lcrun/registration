@@ -1,19 +1,29 @@
-{% extends 'TwigBundle::layout.html.twig' %}
 
-{% block title %}SignUp{% endblock %}
+{% extends "AcmeDemoBundle::layout.html.twig" %}
 
+{% set target = 'signUp' %}
 
-{% block stylesheets %}
-{% endblock %}
+{% block title %}报名{% endblock %}
 
-{% block body %}
-    <div><h1> 会议报名</h1></div>
+{% block stylesheets_child %}
     
-   
-        
-    {%for conf in conferences%}
-        {{conf.getId}} -- {{conf.conferenceName}} -- {{conf.detail}}  <a href="/signup/{{conf.getId}}">报名</a><br>
-    {%endfor%}
 {% endblock %}
 
-{% block javascripts %}{% endblock %}
+{% block content %}
+    <div class="content">
+        <br>
+        <pre>
+        <center><b>会议报名</b></center>
+    {%for conf in conferences%}
+        {{conf.getId}} -- {{conf.conferenceName}} -- {{conf.detail}}  -- <a href="/signup/{{conf.getId}}">报名</a><br>
+    {%endfor%}
+<center><b>取消报名</b></center>
+         {%for sign in signUps%}
+        {{sign.getId}} -- {{sign.conference.conferenceName}} --  <a href="/dissign/{{sign.getId}}">取消报名</a><br>
+    {%endfor%}
+        {% image '@AcmeDemoBundle/Resources/public/images/liantu.png' %}
+        <img class="liantu" src="{{ asset_url }}" alt="LOGO"/>
+        {% endimage %}
+        </pre>
+    </div>
+{% endblock %}

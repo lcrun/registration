@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
     {
         
         $conference = new \Acme\DemoBundle\Entity\Conference();
+        $conference->setDueDate(new \DateTime('tomorrow'));
         //创建表单
         $builder=$this->createFormBuilder($conference);
         $form = $builder

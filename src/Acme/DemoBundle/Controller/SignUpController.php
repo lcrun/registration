@@ -42,17 +42,18 @@ class SignUpController extends Controller
         } 
       $conferences = $this->getDoctrine()->getManager()
                 ->getRepository('AcmeDemoBundle:Conference')->findAll();
+      $signUps = $user->getSignUps();
         return $this->render('AcmeDemoBundle:SignUp:signUp.html.twig', array(
             
-            'conferences' => $conferences
-        ));
+            'conferences' => $conferences,'signUps' => $signUps
+                ));
   
     }
 
     /**
      * disSign the user
      */
-    public function SignAction(Request $request, $id)
+    public function signAction(Request $request, $id)
     {
          $user = $this->getUser();
         if (!is_object($user) || !$user instanceof UserInterface) {
@@ -75,4 +76,31 @@ class SignUpController extends Controller
       
         return $this->redirect($this->generateUrl("_sign_show"));
     }
+    public function dissignAction(Request $request, $id)
+    {
+         $user = $this->getUser();
+        if (!is_object($user) || !$user instanceof UserInterface) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+/*
+        return $this->render('FOSUserBundle:Profile:show.html.twig', array(
+            'user' => $user
+        ));
+        */
+        
+ 
+         
+        
+          $signUp = $this->getDoctrine()->getManager()
+                ->getRepository('AcmeDemoBundle:SignUp')->find($id);
+        
+        $this->getDoctrine()->getManager()->remove( $signUp);
+        $this->getDoctrine()->getManager()->flush();
+        
+        
+        return $this->redirect($this->generateUrl("_sign_show"));
+    }
+    
+    
+    
 }

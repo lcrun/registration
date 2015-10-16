@@ -6,10 +6,30 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
  class DefaultController extends Controller
 {
-    public function indexAction($name)
+    public function indexAction()
     {
-        return $this->render('AcmeDemoBundle:Default:index.html.twig', array('name' => $name));
+        return $this->render('AcmeDemoBundle:Default:index.html.twig');
     }
+    
+    public function connactAction()
+    {
+        return $this->render('AcmeDemoBundle:Default:connact.html.twig');
+    }
+    
+     
+    public function noticeAction()
+    {
+        
+        
+          $user = $this->getUser();
+        if (!is_object($user) || !$user instanceof UserInterface) {
+            return $this->render('AcmeDemoBundle:Default:notice.html.twig');
+        } 
+       else  return $this->redirect($this->generateUrl('_sign_show'));
+        
+    }
+    
+    
     public function mailAction($name)
 {
     $mailer = $this->get('mailer');

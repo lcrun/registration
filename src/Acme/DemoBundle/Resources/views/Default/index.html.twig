@@ -1,1 +1,27 @@
-Hello {{ name }}!
+{% extends "AcmeDemoBundle::layout.html.twig" %}
+
+{% set target = 'index' %}
+
+{% block stylesheets_child %}
+    
+{% endblock %}
+
+{% block content %}
+
+    <div class="content">
+        <br>
+        <pre>
+        <center><b>2015安徽省教师发展年会</b></center>
+        2015安徽省教师发展年会，主题是“支持和促学生学习”，本次大会将邀请海外专家同行分享，促进高校教学水平....
+        
+        
+        {% image '@AcmeDemoBundle/Resources/public/images/liantu.png' %}
+        <img class="liantu" src="{{ asset_url }}" alt="LOGO"/>
+        {% endimage %}
+        </pre>
+    </div>
+
+
+
+{% endblock %}
+

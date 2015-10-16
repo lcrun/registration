@@ -1,25 +1,31 @@
-{% extends 'TwigBundle::layout.html.twig' %}
 
-{% block title %}Conference{% endblock %}
+{% extends "AcmeDemoBundle::layout.html.twig" %}
 
+{% set target = 'handle' %}
 
-{% block stylesheets %}
+{% block title %}管理员主页{% endblock %}
+
+{% block stylesheets_child %}
+    
 {% endblock %}
 
-{% block body %}
-    <div><h1> 新建会议</h1></div>
-    
+{% block content %}
+    <div class="content">
+        <br>
+        <pre>
+        <center><b>新建会议</b></center>
     <form action="{{ path('_new_conference') }}" method="POST">
         {{ form_widget(form) }}
-        
         <div>
             <input type="submit" value="submit" />
         </div>
-    </form>
-        
+    </form>    
     {%for conf in conferences%}
-        {{conf.getId}} -- {{conf.conferenceName}} -- {{conf.detail}}  <a href="/delete/{{conf.getId}}">删除</a><br>
+        {{conf.getId}} -- {{conf.conferenceName}} -- {{conf.detail}}  <a href="/admin/delete/{{conf.getId}}">删除</a><br>
     {%endfor%}
+        {% image '@AcmeDemoBundle/Resources/public/images/liantu.png' %}
+        <img class="liantu" src="{{ asset_url }}" alt="LOGO"/>
+        {% endimage %}
+        </pre>
+    </div>
 {% endblock %}
-
-{% block javascripts %}{% endblock %}

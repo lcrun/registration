@@ -3,15 +3,18 @@
 namespace Acme\DemoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+
+
+// DON'T forget this use statement!!!
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
     /**
      * @ORM\Entity
      * @ORM\Table(name="sign_up")
      * @UniqueEntity(
-     *     fields={"user", "conference"},
-     *     errorPath="user",
-     *     message="This user is already in use on that conference."
+     *  fields={"user", "conference},
+     * errorPath="user",
+     *  message="This user is already in use on that conference."
      * )
      */
 class SignUp
