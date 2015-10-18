@@ -7,24 +7,27 @@
 {% endblock %}
 
 {% block content %}
-
+ <div class="admin_right">
     <div class="content">
         <br>
         <pre>
         <center><b>报名须知</b></center>
+        <p>请您在注册前认真阅读以下注册说明，如果您已经注册过，请您登陆您的个人中心查看/修改您的注册信息。</p>
 
-        1.每个邮箱只能使用一次
+        <p>1 本次大会只接受在线注册参会。注册后请务必<span>登录个人中心报名参会</span>。已在本会议系统注
+        册过的无需再次注册，直接登录"个人中心"申请参会即可。</p>
 
-        2.
+        <p>2 注册时所填个人信息，并请确保<span>邮箱</span>输入正确，每个邮箱只能注册一次，且注册后不能更改。</p>
 
-        3.
+        <p><span>3 请注意单位和职务处的填写规范</span>，单位请写<span>学校全称</span>，如中国科学技术大
+        学，并请不要加其他多余字。职务请写<span>所在部门职务及职称</span>，如XX部门主任 副教授。</p>
+
+        <p>6 如有问题请参考网站首页上方“联系我们”。</p>
+
+<a href="/register"  class="button button-rounded button-flat2">注册新用户</a>   <a href="{{ path('_sign_show') }}"      class="button button-rounded button-flat2">注册参会</a>
         
-<a href="/register"  class="button button-rounded button-flat2">注册新用户</a>   <a href="{{ path('fos_user_security_login') }}"      class="button button-rounded button-flat2">登录账户</a>
-        {% image '@AcmeDemoBundle/Resources/public/images/liantu.png' %}
-        <img class="liantu" src="{{ asset_url }}" alt="LOGO"/>
-        {% endimage %}
         </pre>
     </div>
-
+  </div>
 
 {% endblock %}

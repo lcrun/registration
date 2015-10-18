@@ -34,3 +34,7 @@ _sign_up:
 _dissign:
     path:     /dissign/{id}
     defaults: { _controller: AcmeDemoBundle:SignUp:dissign}
+
+_down:
+    path:     /admin/down/{id}
+    defaults: { _controller: AcmeDemoBundle:Conference:signUpDownload}

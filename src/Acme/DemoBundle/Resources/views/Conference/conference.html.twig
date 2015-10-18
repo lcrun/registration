@@ -10,6 +10,7 @@
 {% endblock %}
 
 {% block content %}
+ <div class="admin_right">
     <div class="content">
         <br>
         <pre>
@@ -21,11 +22,9 @@
         </div>
     </form>    
     {%for conf in conferences%}
-        {{conf.getId}} -- {{conf.conferenceName}} -- {{conf.detail}}  <a href="/admin/delete/{{conf.getId}}">删除</a><br>
+        {{conf.getId}} -- {{conf.conferenceName}} -- {{conf.detail}}  <a href="/admin/delete/{{conf.getId}}">删除会议</a>    <a href="/admin/down/{{conf.getId}}">下载报名表</a><br>
     {%endfor%}
-        {% image '@AcmeDemoBundle/Resources/public/images/liantu.png' %}
-        <img class="liantu" src="{{ asset_url }}" alt="LOGO"/>
-        {% endimage %}
         </pre>
     </div>
+</div>
 {% endblock %}

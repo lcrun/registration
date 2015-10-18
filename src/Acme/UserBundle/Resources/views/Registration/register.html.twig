@@ -1,0 +1,9 @@
+{% extends "AcmeDemoBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+  <pre>
+        <center><b>欢迎报名！</b></center>
+{% include "FOSUserBundle:Registration:register_content.html.twig" %}
+
+ </pre>
+{% endblock fos_user_content %}

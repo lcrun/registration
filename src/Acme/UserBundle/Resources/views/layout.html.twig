@@ -1,0 +1,10 @@
+{% extends "AcmeDemoBundle::layout.html.twig" %}
+
+{% block left_navigation_more_add %}
+      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                 <li><a 
+                           href="/profile/edit">修改个人信息</a></li> 
+                   <li><a 
+                           href="/resetting/request">修改登陆密码</a></li>   
+      {% endif %}
+{% endblock %}

@@ -19,14 +19,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
      
     public function noticeAction()
     {
-        
-        
-          $user = $this->getUser();
-        if (!is_object($user) || !$user instanceof UserInterface) {
             return $this->render('AcmeDemoBundle:Default:notice.html.twig');
-        } 
-       else  return $this->redirect($this->generateUrl('_sign_show'));
-        
     }
     
     

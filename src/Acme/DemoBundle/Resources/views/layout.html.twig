@@ -1,4 +1,4 @@
-{% extends "::base.html.twig" %}
+    {% extends "::base.html.twig" %}
 
 {% block title %}{{ site_name }}{% endblock %}
 
@@ -10,13 +10,11 @@
         '@AcmeDemoBundle/Resources/public/css/lib/font-awesome.min.css' 
         '@AcmeDemoBundle/Resources/public/css/lib/button.min.css' 
         '@AcmeDemoBundle/Resources/public/css/home.css' 
-
+        '@AcmeDemoBundle/Resources/public/css/admin.css' 
         filter='cssrewrite' %}
         <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
-    
-    
-  
+
     {% image '@AcmeDemoBundle/Resources/public/images/ustc.ico' %}
         <link rel="icon" href="{{ asset_url }}" type="image/x-icon" />
     {% endimage %}
@@ -28,63 +26,63 @@
     <div id="main">
         <div id="header">
             {% block header %}
-                <div id="header_login">
+                  <div id="header_login">
                     <div id="login_layout">
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                             <a href="{{ path('fos_user_security_logout') }}" 
-                               class="button button-rounded button-flat2">退出账户</a>
+                               class="button button-rounded button-flat2">您好：{{app.user.getUserName()}}，退出账户</a>
                         {% else %}
                             <a href="{{ path('fos_user_security_login') }}" 
-                               class="button button-rounded button-flat1">管理员入口</a>
+                               class="button button-rounded button-flat1">登陆</a>
                         {% endif %}
                     </div>
                 </div>
-                <div id="logo">
-                    {% image '@AcmeDemoBundle/Resources/public/images/logo1.jpg' %}
-                    <a href="/"><img src="{{ asset_url }}" alt="LOGO" /></a>
-                    {% endimage %}
-                </div>
+            
                 <div id="navigation">
                     <ul id="menu">
                         {% block navigation_more %}
-                            <li><a {% if target == 'index' %} id="target" {% endif %} 
-                                    href="{{ path('acme_demo_homepage') }}">首页</a></li>
-                            <li><a {% if target == 'signUp' %} id="target" {% endif %} 
-                                    href="{{ path('_notice') }}">报名</a></li>
+                            <li><a  href="{{ path('acme_demo_homepage') }}">首页</a></li>
+                            <li><a  href="{{ path('_notice') }}">报名</a></li>
+                           <li><a   href="/profile">个人中心</a></li>
                             {% block navigation_more_add %}
                                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                     {% if is_granted('ROLE_ADMIN') %}
                                         <li><a {% if target == 'handle' %} id="target" {% endif %} 
-                                            href="{{ path('_new_conference') }}">后台管理</a></li>
-                                  
+                                            href="{{ path('_new_conference') }}">后台管理</a></li    
                                     {% endif %}
                                 {% endif %}
                             {% endblock %}
-                            <li><a {% if target == 'about' %} id="target" {% endif %} 
-                                    href="{{ path('acme_demo_connact_us') }}">联系我们</a></li>
+                            <li><a    href="{{ path('acme_demo_connact_us') }}">联系我们</a></li>
                         {% endblock %}
-                    </ul>
-                      <div id="time_tmp">{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}{{app.user.username}}{% endif %}</div>
+                    </ul>     
                 </div>
-                <p id="line"></p>
             {% endblock %}
         </div>
-
         <div id="middle">
+    
             <div id="content">
-                {% block content %}
+               
                     
-                    
-                <div class="admin_left">
+                {% block left_navigation %}            
+                <div class=admin_left>
                     <div class="pd_side_bar">
                         <ul>
-                            <li id="pd_menu_1" {% if left_target == 'login'%}class='left_target'{%endif%}>
-                                <a href="/login">登录</a></li>
+                            <li id="pd_menu_1" >
+                                <a href="/login">注册会议</a></li>
+                             <li id="pd_menu_2" >
+                                <a href="/login">日程安排</a></li>
                             {% block left_navigation_more_add %}
                             {% endblock %}
                         </ul>
                     </div>
                 </div>
+                {% endblock  %}         
+                        
+                        
+                        
+                        
+                        
+                 {% block content %}        
                 <div class="admin_right">
                     {% for type, messages in app.session.flashbag.all() %}
                         {% for message in messages %}
@@ -95,49 +93,22 @@
                     {% endfor %}
                     {% block fos_user_content %}
                     {% endblock fos_user_content %}
-                </div>
-                    
+                </div>             
                 {% endblock %}
+                
             </div>
         </div>
 
         <div id="footer">
             {% block footer %}
-                <div id="footer_top">
-                    <p id="links">校内链接：
-                        <a href="http://www.ustc.edu.cn">科大主页</a>
-                        <a href="http://www.teach.ustc.edu.cn/">本科教育</a>
-                        <a href="http://202.38.70.145/">现代教育技术中心</a>
-                        <a href="http://email.ustc.edu.cn">电子邮件</a>
-                    </p>
-                </div>
-                <div id="footer_bottom">
-                    <address>
-                        <span id="en">Copyright</span> 
-                        中国科学技术大学教务处<br />
-                        现代教育技术中心&nbsp;制作<br />
-                        <!--span id="small" lang="zh-cn">
-                            ICP备案号：皖ICP备*****号*
-                        </span-->
-                    </address>
-                </div>
+            
+                <p>版权所有&nbsp;©&nbsp; 中国科学技术大学教务处   现代教育技术中心</p > 
+             
             {% endblock %}
         </div>
     </div>
         
-    <script>
-        var ie = -1;
-    </script>
-    <!--[if lte IE 8]>
-        <script>
-            ie = 8;
-        </script>
-    <![endif]-->
-    <!--[if IE 9]>
-        <script>
-            ie = 9;
-        </script>
-    <![endif]-->
+  
 {% endblock %}
 
 {% block javascripts %}

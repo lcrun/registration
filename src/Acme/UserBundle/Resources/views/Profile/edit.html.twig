@@ -1,0 +1,12 @@
+{% extends "AcmeUserBundle::layout.html.twig" %}
+
+
+
+
+{% block fos_user_content %}
+
+    <pre>
+ <center><b>修改个人信息</b></center>
+{% include "FOSUserBundle:Profile:edit_content.html.twig" %}
+</pre>
+{% endblock fos_user_content %}
