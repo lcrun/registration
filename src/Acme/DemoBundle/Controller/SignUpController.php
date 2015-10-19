@@ -123,11 +123,8 @@ class SignUpController extends Controller
             'user' => $user
         ));
         */
-        
- 
-         
-        
-          $signUp = $this->getDoctrine()->getManager()
+                
+        $signUp = $this->getDoctrine()->getManager()
                 ->getRepository('AcmeDemoBundle:SignUp')->find($id);
         
         $this->getDoctrine()->getManager()->remove( $signUp);

@@ -30,8 +30,26 @@ use FOS\UserBundle\Model\UserInterface;
  */
 class RegistrationController extends Controller
 {
+    private function getCurrentConference(){
+        $backend = $this->getDoctrine()->getManager()
+                ->getRepository('AcmeDemoBundle:Backend')->findOneBy(array());
+        $conference = null;
+        if($backend != null){
+            $conference = $this->getDoctrine()->getManager()
+                    ->getRepository('AcmeDemoBundle:Conference')->find($backend->getConferenceId());
+        }
+        return $conference;
+    }
+    
     public function registerAction(Request $request)
     {
+        $conference = $this->getCurrentConference();
+        $now = new \DateTime();
+        $errorTip = null;
+        if($conference == null || $conference->getDueDate()<$now){
+            $errorTip = "暂无可会议可报名！";
+        }
+        
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
         $formFactory = $this->get('fos_user.registration.form.factory');
         /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
@@ -60,6 +78,9 @@ class RegistrationController extends Controller
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
             
             $userManager->updateUser($user);
+            
+            //报名成功
+            signUpSuccess($user);
 
             if (null === $response = $event->getResponse()) {
                 $url = $this->generateUrl('fos_user_registration_confirmed');
@@ -67,13 +88,27 @@ class RegistrationController extends Controller
             }
 
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
-
             return $response;
         }
 
         return $this->render('FOSUserBundle:Registration:register.html.twig', array(
             'form' => $form->createView(),
+            'errorTip' => $errorTip
         ));
+    }
+    
+    private function signUpSuccess($user){
+        $backend = $this->getDoctrine()->getManager()
+                ->getRepository('AcmeDemoBundle:Backend')->findOneBy(array());
+        $conference = null;
+        if($backend != null){
+            $conference = $this->getDoctrine()->getManager()
+                    ->getRepository('AcmeDemoBundle:Conference')->find($backend->getConferenceId());
+        }
+    }
+    
+    private function sendSuccessEmail($user, $conf){
+        
     }
 
     /**
