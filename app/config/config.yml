@@ -109,7 +109,7 @@ fos_user:
             from_email:
                 address:        sa514007@mail.ustc.edu.cn
                 sender_name:    lcrun
-            enabled:    false
+            enabled:    true
             template:   FOSUserBundle:Registration:email.txt.twig
         form:
             type:               acme_user_registration
