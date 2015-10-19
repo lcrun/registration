@@ -1,0 +1,21 @@
+{% extends "AcmeDemoBundle::layout.html.twig" %}
+
+{% set target = 'index' %}
+
+{% block stylesheets_child %}
+    
+{% endblock %}
+
+{% block content %}
+   <div class="admin_right">
+    <div class="content">
+        <br>
+        
+       {{confschedule|raw}}
+    
+    </div>
+   </div>
+
+
+{% endblock %}
+

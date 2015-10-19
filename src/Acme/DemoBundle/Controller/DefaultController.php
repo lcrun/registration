@@ -7,8 +7,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  class DefaultController extends Controller
 {
     public function indexAction()
-    {
-        return $this->render('AcmeDemoBundle:Default:index.html.twig');
+    {$conference = $this->getDoctrine()->getManager()
+                ->getRepository('AcmeDemoBundle:Conference')->findOneByConferenceName('新进教师1');
+        
+            return $this->render('AcmeDemoBundle:Default:index.html.twig',
+                array('confdetail' => $conference->getDetail()));
+       
     }
     
     public function connactAction()
@@ -21,8 +25,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
     {
             return $this->render('AcmeDemoBundle:Default:notice.html.twig');
     }
+  
     
     
+     public function scheduleAction()
+    {   $conference = $this->getDoctrine()->getManager()
+                ->getRepository('AcmeDemoBundle:Conference')->findOneByConferenceName('新进教师1');
+        
+            return $this->render('AcmeDemoBundle:Default:schedule.html.twig',
+                array('confschedule' => $conference->getSchedule()));
+    }
     public function mailAction($name)
 {
     $mailer = $this->get('mailer');

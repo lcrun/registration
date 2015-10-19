@@ -11,6 +11,7 @@
         '@AcmeDemoBundle/Resources/public/css/lib/button.min.css' 
         '@AcmeDemoBundle/Resources/public/css/home.css' 
         '@AcmeDemoBundle/Resources/public/css/admin.css' 
+
         filter='cssrewrite' %}
         <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
@@ -30,7 +31,7 @@
                     <div id="login_layout">
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                             <a href="{{ path('fos_user_security_logout') }}" 
-                               class="button button-rounded button-flat2">您好：{{app.user.getUserName()}}，退出账户</a>
+                               class="button button-rounded button-flat2">{{app.user.getUserName()}}，退出账户</a>
                         {% else %}
                             <a href="{{ path('fos_user_security_login') }}" 
                                class="button button-rounded button-flat1">登陆</a>
@@ -47,8 +48,8 @@
                             {% block navigation_more_add %}
                                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                     {% if is_granted('ROLE_ADMIN') %}
-                                        <li><a {% if target == 'handle' %} id="target" {% endif %} 
-                                            href="{{ path('_new_conference') }}">后台管理</a></li    
+                                        <li><a 
+                                            href="{{ path('_new_conference') }}">后台管理</a></li>
                                     {% endif %}
                                 {% endif %}
                             {% endblock %}
@@ -68,9 +69,9 @@
                     <div class="pd_side_bar">
                         <ul>
                             <li id="pd_menu_1" >
-                                <a href="/login">注册会议</a></li>
+                                <a href="{{ path('_notice') }}">注册会议</a></li>
                              <li id="pd_menu_2" >
-                                <a href="/login">日程安排</a></li>
+                                <a href="{{ path('_schedule') }}">日程安排</a></li>
                             {% block left_navigation_more_add %}
                             {% endblock %}
                         </ul>
@@ -78,7 +79,7 @@
                 </div>
                 {% endblock  %}         
                         
-                        
+                         
                         
                         
                         
@@ -116,7 +117,10 @@
         '@AcmeDemoBundle/Resources/public/js/lib/jquery-1.9.0.min.js'
         '@AcmeDemoBundle/Resources/public/js/lib/bootstrap.js'
         '@AcmeDemoBundle/Resources/public/js/lib/jquery-ui.min.js'
-        '@AcmeDemoBundle/Resources/public/js/layout.js' %}
+        '@AcmeDemoBundle/Resources/public/js/layout.js'
+
+    
+    %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
     {% block javascripts_child %}{% endblock %}

@@ -14,8 +14,11 @@ Acme\DemoBundle\Entity\Conference:
         dueDate:
             type: datetime
         detail:
-            type: string
-            length: 255
+            type: text
+            
+        schedule:
+            type: text
+            
     oneToMany:
         signUps:
             targetEntity: SignUp

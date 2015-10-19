@@ -25,7 +25,8 @@ use Acme\DemoBundle\Entity\Conference;
         $form = $builder
             ->add('conferenceName','text', array('label' => '会议名称 ：',))
             ->add('dueDate', 'date', array('label' => '时间：',))
-            ->add('detail', 'textarea', array('label' => '详情：',))
+            ->add('detail', 'textarea', array('label' => '会议详情：',))
+              ->add('schedule', 'textarea', array('label' => '日程安排 ',))
             ->getForm();
         
         $form->handleRequest($request);

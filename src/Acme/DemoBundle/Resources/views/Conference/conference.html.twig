@@ -13,7 +13,7 @@
  <div class="admin_right">
     <div class="content">
         <br>
-        <pre>
+       
         <center><b>新建会议</b></center>
     <form action="{{ path('_new_conference') }}" method="POST">
         {{ form_widget(form) }}
@@ -21,10 +21,44 @@
             <input type="submit" value="submit" />
         </div>
     </form>    
+<!-- 加载编辑器的容器 -->
+    <script id="container" name="content" type="text/plain">
+       
+    </script>
+   
     {%for conf in conferences%}
-        {{conf.getId}} -- {{conf.conferenceName}} -- {{conf.detail}}  <a href="/admin/delete/{{conf.getId}}">删除会议</a>    <a href="/admin/down/{{conf.getId}}">下载报名表</a><br>
+        {{conf.getId}} -- {{conf.conferenceName}} --  <a href="/admin/delete/{{conf.getId}}">删除会议</a>    <a href="/admin/down/{{conf.getId}}">下载报名表</a>    <a href=" /admin /sethome/{{{conf.getId}}">设为主页信息</a><br>
     {%endfor%}
-        </pre>
+       
     </div>
 </div>
+{% endblock %}
+
+
+    
+    {% block javascripts_child %}
+    {% javascripts 
+        '@AcmeDemoBundle/Resources/public/js/ueditor/ueditor.config.js'
+        '@AcmeDemoBundle/Resources/public/js/ueditor/ueditor.all.js'%}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    
+    <script type="text/javascript">
+        
+    
+        UE.getEditor("form_detail", {
+     autoHeightEnabled: true,
+    autoFloatEnabled: true,
+   
+});
+
+
+ UE.getEditor("form_schedule", {
+     autoHeightEnabled: true,
+    autoFloatEnabled: true,
+   
+});
+
+    </script>
+
 {% endblock %}

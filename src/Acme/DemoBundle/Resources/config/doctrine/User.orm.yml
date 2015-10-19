@@ -9,19 +9,19 @@ Acme\DemoBundle\Entity\User:
     fields:          
         gender:
             type: string
-            
+            nullable: true
         company:
             type: string
             length: '100'  
-           
+            nullable: true
         position:
             type: string
             length: '100'   
-            
+            nullable: true
         address:
             type: string
             length: '100'   
-            
+            nullable: true
         phone:
             type: string
             length: '20' 

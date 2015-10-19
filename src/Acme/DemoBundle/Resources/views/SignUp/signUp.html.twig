@@ -16,7 +16,7 @@
         <pre>
 <center><b>会议报名</b></center>
     {%for conf in conferences%}
-        {{conf.getId}} -- {{conf.conferenceName}} -- {{conf.detail}}  -- <a href="/signup/{{conf.getId}}">报名</a><br>
+        {{conf.getId}} -- {{conf.conferenceName}} -  -- <a href="/signup/{{conf.getId}}">报名</a><br>
     {%endfor%}
 <center><b>已经报名</b></center>
     {%for sign in signUps%}

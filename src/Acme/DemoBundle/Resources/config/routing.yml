@@ -38,3 +38,12 @@ _dissign:
 _down:
     path:     /admin/down/{id}
     defaults: { _controller: AcmeDemoBundle:Conference:signUpDownload}
+    
+    
+_schedule:
+    path:     /schedule
+    defaults: { _controller: AcmeDemoBundle:Default:schedule }
+
+_set_home:
+    path:    /admin /sethome/{id}
+    defaults: { _controller: AcmeDemoBundle:Conference:setHome}
