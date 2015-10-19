@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="UTF-8" />
+        <title>报名成功</title>
+    </head>
+    <body>
+        <h1>{{ user.getName }}，您好！</h1>
+        <p>您已成功报名了<span>{{conference.getConferenceName}}</span>会议，详情如下：</p>
+        {{conference.getDetail|raw}}
+        <p><a href="{{ url }}">您可点击此链接查看报名信息。</a> </p>
+    </body>
+</html>
