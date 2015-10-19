@@ -19,7 +19,6 @@
                 <option name="max">255</option>
                 <option name="maxMessage">fos_user.username.long</option>
                 <option name="groups">
-                    <value>Registration</value>
                     <value>Profile</value>
                 </option>
             </constraint>
@@ -29,7 +28,7 @@
             <constraint name="NotBlank">
                 <option name="message">fos_user.email.blank</option>
                 <option name="groups">
-                    <value>Registration</value>
+                    <value>MyRegistration</value>
                     <value>Profile</value>
                 </option>
             </constraint>
@@ -39,14 +38,14 @@
                 <option name="max">254</option>
                 <option name="maxMessage">fos_user.email.long</option>
                 <option name="groups">
-                    <value>Registration</value>
+                    <value>MyRegistration</value>
                     <value>Profile</value>
                 </option>
             </constraint>
             <constraint name="Email">
                 <option name="message">fos_user.email.invalid</option>
                 <option name="groups">
-                    <value>Registration</value>
+                    <value>MyRegistration</value>
                     <value>Profile</value>
                 </option>
             </constraint>
@@ -56,7 +55,7 @@
             <constraint name="NotBlank">
                 <option name="message">fos_user.password.blank</option>
                 <option name="groups">
-                    <value>Registration</value>
+                    <value>MyRegistration</value>
                     <value>ResetPassword</value>
                     <value>ChangePassword</value>
                 </option>
@@ -66,7 +65,7 @@
                 <option name="max">4096</option>
                 <option name="minMessage">fos_user.password.short</option>
                 <option name="groups">
-                    <value>Registration</value>
+                    <value>MyRegistration</value>
                     <value>Profile</value>
                     <value>ResetPassword</value>
                     <value>ChangePassword</value>
@@ -79,14 +78,14 @@
         <property name="name">
             <constraint name="NotBlank">
                 <option name="message">fos_user.group.blank</option>
-                <option name="groups">Registration</option>
+                <option name="groups">MyRegistration</option>
             </constraint>
             <constraint name="Length">
                 <option name="min">2</option>
                 <option name="minMessage">fos_user.group.short</option>
                 <option name="max">255</option>
                 <option name="maxMessage">fos_user.group.long</option>
-                <option name="groups">Registration</option>
+                <option name="groups">MyRegistration</option>
             </constraint>
         </property>
     </class>
@@ -99,7 +98,7 @@
             <constraint name="NotBlank">
                 <option name="message">fos_user.username.blank</option>
                 <option name="groups">
-                    <value>Registration</value>
+                    <value>MyRegistration</value>
                     <value>Profile</value>
                 </option>
             </constraint>
@@ -109,7 +108,7 @@
                 <option name="max">255</option>
                 <option name="maxMessage">fos_user.username.long</option>
                 <option name="groups">
-                    <value>Registration</value>
+                    <value>MyRegistration</value>
                     <value>Profile</value>
                 </option>
             </constraint>
@@ -119,7 +118,7 @@
             <constraint name="NotBlank">
                 <option name="message">fos_user.email.blank</option>
                 <option name="groups">
-                    <value>Registration</value>
+                    <value>MyRegistration</value>
                     <value>Profile</value>
                 </option>
             </constraint>
@@ -129,14 +128,14 @@
                 <option name="max">255</option>
                 <option name="maxMessage">fos_user.email.long</option>
                 <option name="groups">
-                    <value>Registration</value>
+                    <value>MyRegistration</value>
                     <value>Profile</value>
                 </option>
             </constraint>
             <constraint name="Email">
                 <option name="message">fos_user.email.invalid</option>
                 <option name="groups">
-                    <value>Registration</value>
+                    <value>MyRegistration</value>
                     <value>Profile</value>
                 </option>
             </constraint>
@@ -146,7 +145,7 @@
             <constraint name="NotBlank">
                 <option name="message">fos_user.password.blank</option>
                 <option name="groups">
-                    <value>Registration</value>
+                    <value>MyRegistration</value>
                     <value>ResetPassword</value>
                     <value>ChangePassword</value>
                 </option>
@@ -156,7 +155,7 @@
                 <option name="max">4096</option>
                 <option name="minMessage">fos_user.password.short</option>
                 <option name="groups">
-                    <value>Registration</value>
+                    <value>MyRegistration</value>
                     <value>Profile</value>
                     <value>ResetPassword</value>
                     <value>ChangePassword</value>
@@ -169,14 +168,14 @@
         <property name="name">
             <constraint name="NotBlank">
                 <option name="message">fos_user.group.blank</option>
-                <option name="groups">Registration</option>
+                <option name="groups">MyRegistration</option>
             </constraint>
             <constraint name="Length">
                 <option name="min">2</option>
                 <option name="minMessage">fos_user.group.short</option>
                 <option name="max">255</option>
                 <option name="maxMessage">fos_user.group.long</option>
-                <option name="groups">Registration</option>
+                <option name="groups">MyRegistration</option>
             </constraint>
         </property>
     </class>

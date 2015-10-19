@@ -80,7 +80,13 @@ class RegistrationController extends Controller
             $userManager->updateUser($user);
             
             //报名成功
-            signUpSuccess($user);
+            $result = $this->signUpSuccess($user);
+            if($result['success']){
+                $url = $this->generateUrl('fos_user_profile_show');
+                return new RedirectResponse($url);
+            } else {
+                $errorTip = $result['msg'];
+            }
 
             if (null === $response = $event->getResponse()) {
                 $url = $this->generateUrl('fos_user_registration_confirmed');
@@ -98,17 +104,50 @@ class RegistrationController extends Controller
     }
     
     private function signUpSuccess($user){
-        $backend = $this->getDoctrine()->getManager()
-                ->getRepository('AcmeDemoBundle:Backend')->findOneBy(array());
-        $conference = null;
-        if($backend != null){
-            $conference = $this->getDoctrine()->getManager()
-                    ->getRepository('AcmeDemoBundle:Conference')->find($backend->getConferenceId());
+        $conference = $this->getCurrentConference();
+        $now = new \DateTime();
+        if($conference == null || $conference->getDueDate()<$now){
+            return array('success'=>false, 'msg'=>'暂无可会议可报名！');
+        }
+        $signUp = $this->getDoctrine()->getManager()
+                    ->getRepository('AcmeDemoBundle:SignUp')->findOneBy(array('user'=>$user, 'conference'=>$conference));
+        if($signUp == null){
+            $signUp = new \Acme\DemoBundle\Entity\SignUp(); 
+            $signUp->setUser($user);
+            $signUp->setConference($conference);
+            $signUp->setSignUpDate($now);
+            //try{
+                $this->getDoctrine()->getManager()->persist($signUp);
+                $this->getDoctrine()->getManager()->flush();
+                //发送提醒邮件
+                $this->sendSuccessEmail($user, $conference);
+                return array('success'=>true, 'msg'=>'报名成功！');
+            //} catch (\Exception $ex){
+            //    return array('success'=>false, 'msg'=>'报名失败！'+$ex->getMessage());
+            //}
+        } else {
+            return array('success'=>false, 'msg'=>'重复报名！');
         }
     }
     
-    private function sendSuccessEmail($user, $conf){
-        
+    private function sendSuccessEmail($user, $conference){
+        $mailer = $this->get('mailer');
+        $from= $this->container->getParameter('mailer_user');
+        $url = $this->generateUrl('_sign_show', array(), true);
+        $message = $mailer->createMessage()
+            ->setSubject('您已成功报名了会议－－'.$conference->getConferenceName())
+            ->setFrom($from)
+            ->setTo($user->getEmail())
+            ->setBody(
+                $this->renderView(
+                    'AcmeUserBundle:Default:signUpEmail.html.twig',
+                    array('conference' => $conference, 'user'=>$user, 'url'=>$url)
+                ),
+                'text/html'
+            )
+        ;
+        $res = $mailer->send($message);
+        var_dump($res);
     }
 
     /**

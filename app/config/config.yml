@@ -114,7 +114,7 @@ fos_user:
         form:
             type:               acme_user_registration
             name:               fos_user_registration_form
-            validation_groups:  [Registration, Default]
+            validation_groups:  [MyRegistration, Default]
     resetting:
         token_ttl: 86400
         email:
