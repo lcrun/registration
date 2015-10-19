@@ -44,10 +44,9 @@ and open the template in the editor.
 }
 .admin_right {
   width: 83%;
-  float: left;
+  float: right;
   min-height: 600px;
   margin-top: 1px;
-  margin-left: 1%;
   background-color: #f8f6f6;
   border-radius: 2px;
   -moz-border-radius: 2px;
