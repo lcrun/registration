@@ -27,20 +27,19 @@
     <div id="main">
         <div id="header">
             {% block header %}
-                  <div id="header_login">
-                    <div id="login_layout">
-                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                            <a href="{{ path('fos_user_security_logout') }}" 
-                               class="button button-rounded button-flat2">{{app.user.getUserName()}}，退出账户</a>
-                        {% else %}
-                            <a href="{{ path('fos_user_security_login') }}" 
-                               class="button button-rounded button-flat1">登陆</a>
-                        {% endif %}
-                    </div>
+                <img class='logo' src="http://img2.imgtn.bdimg.com/it/u=2640849608,549187206&fm=21&gp=0.jpg" width="200" />
+                <div class="user_info">
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <span>您好，{{app.user.getName()}}</span>
+                        <a href="{{ path('fos_user_security_logout') }}" 
+                           class="button button-rounded button-flat2">退出账户</a>
+                    {% else %}
+                        <a href="{{ path('fos_user_security_login') }}" 
+                           class="button button-rounded button-flat1">登陆</a>
+                    {% endif %}
                 </div>
-            
-                <div id="navigation">
-                    <ul id="menu">
+                <nav>
+                    <ul>
                         {% block navigation_more %}
                             <li><a  href="{{ path('acme_demo_homepage') }}">首页</a></li>
                             <li><a  href="{{ path('_notice') }}">报名</a></li>
@@ -56,48 +55,37 @@
                             <li><a    href="{{ path('acme_demo_connact_us') }}">联系我们</a></li>
                         {% endblock %}
                     </ul>     
-                </div>
+                </nav>
             {% endblock %}
         </div>
         <div id="middle">
-    
-            <div id="content">
-               
-                    
-                {% block left_navigation %}            
-                <div class=admin_left>
-                    <div class="pd_side_bar">
-                        <ul>
-                            <li id="pd_menu_1" >
-                                <a href="{{ path('_notice') }}">注册会议</a></li>
-                             <li id="pd_menu_2" >
-                                <a href="{{ path('_schedule') }}">日程安排</a></li>
-                            {% block left_navigation_more_add %}
-                            {% endblock %}
-                        </ul>
-                    </div>
+            {% block left_navigation %}            
+            <div class=admin_left>
+                <div class="pd_side_bar">
+                    <ul>
+                        <li id="pd_menu_1" >
+                            <a href="{{ path('_notice') }}">注册会议</a></li>
+                         <li id="pd_menu_2" >
+                            <a href="{{ path('_schedule') }}">日程安排</a></li>
+                        {% block left_navigation_more_add %}
+                        {% endblock %}
+                    </ul>
                 </div>
-                {% endblock  %}         
-                        
-                         
-                        
-                        
-                        
-                 {% block content %}        
-                <div class="admin_right">
-                    {% for type, messages in app.session.flashbag.all() %}
-                        {% for message in messages %}
-                            <div class="flash-{{ type }}">
-                                {{ message }}
-                            </div>
-                        {% endfor %}
-                    {% endfor %}
-                    {% block fos_user_content %}
-                    {% endblock fos_user_content %}
-                </div>             
-                {% endblock %}
-                
             </div>
+            {% endblock  %}           
+             {% block content %}        
+            <div class="admin_right">
+                {% for type, messages in app.session.flashbag.all() %}
+                    {% for message in messages %}
+                        <div class="flash-{{ type }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                {% block fos_user_content %}
+                {% endblock fos_user_content %}
+            </div>             
+            {% endblock %}
         </div>
 
         <div id="footer">

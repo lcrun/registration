@@ -26,13 +26,14 @@ and open the template in the editor.
     padding: 0px 0px 0px 42px;
 }
 body {
-  font-family: mal-font1;
+  font-family: 雅黑;
   width: 100%;
   font-size: 14px;
   min-width: 960px;
   color: #101010;
 }
-a {
+a, a:hover, a:visited, a:active {
+  text-decoration: none;
   color: #101010;
 }
 .bordered {
@@ -41,6 +42,10 @@ a {
 .main_center {
   width: 960px;
   margin: 0 auto;
+}
+ul,li {
+  padding: 0;
+  margin: 0;
 }
 .block_layout {
   background-color: #f8f6f6;
@@ -55,7 +60,79 @@ a {
   height: auto;
   border: dotted 1px transparent;
 }
-#main #header {
+/* 页面头部样式 */
+#header {
+  width: 1080px;
+  margin: 0 auto;
+  background-color: #efefef;
+  overflow: hidden;
+}
+#header .logo {
+  float: left;
+}
+#header nav, #header nav ul, #header nav ul li {
+  float: left;
+}
+
+#header nav ul li {
+  display: block;
+  margin: 0 10px;
+  line-height: 120px;
+  font-size: 24px;
+  font-weight: bold;
+}
+#header nav ul li a {
+  display: block;
+  height: 120px;
+  color: #000;
+}
+#header nav ul li a:hover{
+  color: #000;
+  border-bottom: 2px solid #f70;
+}
+#header .user_info {
+  float: right;
+  margin-right: 20px;
+  margin-top: 44px;
+}
+
+
+/* 页面中部样式 */
+#middle {
+  width: 1080px;
+  margin: 2px auto 0;
+  overflow: hidden;
+}
+#middle .admin_right, #middle .pd_side_bar li {
+  background-color: #efefef;
+}
+.admin_right h2 {
+  margin: 0px;
+  font-size: 18px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #000;
+  font-weight: bolder;
+}
+.admin_right p {
+  font-size: 14px;
+  line-height: 2;
+}
+.admin_right .button-flat2 {
+  display: block;
+  width: 100px;
+  margin: 10px auto 0;
+  background-color: #ccc;
+}
+
+/* 页面尾部样式 */
+#footer {
+  width: 1080px;
+  margin: 10px auto 0;
+  text-align: center;
+}
+
+/*#main #header {
   position: relative;
   width: 100%;
   height: 99px;
@@ -64,15 +141,12 @@ a {
   border: dotted 1px transparent;
 }
 #main #header #header_login {
- // position: absolute;
-//  width: 100%;
 float : right;
 }
 
 
 #header_login
 #main #header #header_login #login_layout {
- // width: 960px;
   margin: 0 auto;
   text-align: right;
 }
@@ -709,7 +783,7 @@ float : right;
   -webkit-box-shadow: 0px 0px 0px rgba(219, 154, 44, 0.3), 0px 1px 2px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0px 0px 0px rgba(219, 154, 44, 0.3), 0px 1px 2px rgba(0, 0, 0, 0.2);
   box-shadow: 0px 0px 0px rgba(219, 154, 44, 0.3), 0px 1px 2px rgba(0, 0, 0, 0.2);
-}
+}*/
 @-webkit-keyframes glowing {
   from {
     -webkit-box-shadow: 0px 0px 0px rgba(219, 104, 44, 0.3), 0px 1px 2px rgba(0, 0, 0, 0.2);

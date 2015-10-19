@@ -52,7 +52,7 @@ and open the template in the editor.
   border-radius: 2px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
-  padding: 1px 10px 1px 10px;
+  padding: 25px;
   border: dotted 1px transparent;
 }
 .admin_right .admin_right_content {
