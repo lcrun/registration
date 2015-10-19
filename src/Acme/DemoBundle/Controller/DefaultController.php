@@ -77,8 +77,4 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
         return $this->render('AcmeDemoBundle:Default:index.html.twig', array('name' => $name));
     }
-    
-    
-    
-    
 }

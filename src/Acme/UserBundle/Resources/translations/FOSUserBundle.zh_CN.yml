@@ -40,7 +40,7 @@ registration:
     check_email: 系统向%email%发送了一封包含激活链接的邮件，请访问该链接以启用你的帐户。
     confirmed: %username%，恭喜你，你的帐户已启用！
     back: 返回前一页面
-    submit: 注册
+    submit: 报名
     flash:
         user_created: 用户已创建
     email:

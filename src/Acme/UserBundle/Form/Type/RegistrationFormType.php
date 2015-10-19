@@ -11,8 +11,9 @@ class RegistrationFormType extends BaseType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
-
-        $builder->add('company', null, array('label' => '单位', 'translation_domain' => 'FOSUserBundle'))
+        $builder->remove('username');
+        $builder->add('name', null, array('label' => '姓名', 'translation_domain' => 'FOSUserBundle'))
+                ->add('company', null, array('label' => '单位', 'translation_domain' => 'FOSUserBundle'))
                           
                 ->add('position', null, array('label' => '职务', 'translation_domain' => 'FOSUserBundle'))
                 ->add('gender', 'choice',array('label' => '性别', 
