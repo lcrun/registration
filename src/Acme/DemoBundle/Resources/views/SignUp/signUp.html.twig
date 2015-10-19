@@ -13,16 +13,22 @@
   <div class="admin_right">
      <div class="content">
         <br>
-        <pre>
 <center><b>会议报名</b></center>
+    {%set i=0%}
     {%for conf in conferences%}
-        {{conf.getId}} -- {{conf.conferenceName}} -  -- <a href="/signup/{{conf.getId}}">报名</a><br>
+        {{conf.getId}} -- {{conf.conferenceName}} - {{status[i]}} -- {{conf.getDueDate|date('Y-m-d H:i')}}
+        {%if status[i]=='正常'%}<a href="/signup/{{conf.getId}}">报名</a>{%endif%}<br>
+        {%set i=i+1%}
     {%endfor%}
+    
+    
+{%if msg%}{%for m in msg%}<p style="color: red;">{{m}}</p>{%endfor%}{%endif%}
+
+
 <center><b>已经报名</b></center>
     {%for sign in signUps%}
         {{sign.getId}} -- {{sign.conference.conferenceName}} --  <a href="/dissign/{{sign.getId}}">取消报名</a><br>
     {%endfor%}
-        </pre>
     </div>
  </div>
 {% endblock %}

@@ -9,10 +9,11 @@
 {% block content %}
    <div class="admin_right">
     <div class="content">
-        <br>
-        
-       {{confschedule|raw}}
-    
+        {%if conference%}
+            {{conference.getSchedule|raw}}
+        {%else%}
+            {{"暂无会议！"}}
+        {%endif%}
     </div>
    </div>
 

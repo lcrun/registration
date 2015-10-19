@@ -12,6 +12,7 @@ use Acme\DemoBundle\Entity\User;
 
 use Acme\DemoBundle\Entity\SignUp;
 use Acme\DemoBundle\Entity\Conference;
+use Acme\DemoBundle\Entity\Backend;
 
  class ConferenceController extends Controller
 {
@@ -57,7 +58,22 @@ use Acme\DemoBundle\Entity\Conference;
         return $this->redirect($this->generateUrl("_new_conference"));
     } 
     
-    
+    public function setHomeAction($id){
+        $backends = $this->getDoctrine()->getManager()
+                ->getRepository('AcmeDemoBundle:Backend')->findAll();
+        if($backends != null){
+            foreach($backends as $backend){
+                $this->getDoctrine()->getManager()->remove($backend);
+            }
+            $this->getDoctrine()->getManager()->flush();
+        }
+        $backend = new Backend();
+        $backend->setConferenceId($id);
+        $this->getDoctrine()->getManager()->persist($backend);
+        $this->getDoctrine()->getManager()->flush();
+        
+        return $this->redirect($this->generateUrl("acme_demo_homepage"));
+    }
     
     
     public function signUpDownloadAction($id)

@@ -34,20 +34,42 @@ class SignUpController extends Controller
      */
     public function signShowAction()
     {
-       
-        
-    $user = $this->getUser();
+        $user = $this->getUser();
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         } 
-      $conferences = $this->getDoctrine()->getManager()
+        $conferences = $this->getDoctrine()->getManager()
                 ->getRepository('AcmeDemoBundle:Conference')->findAll();
-      $signUps = $user->getSignUps();
-        return $this->render('AcmeDemoBundle:SignUp:signUp.html.twig', array(
-            
-            'conferences' => $conferences,'signUps' => $signUps
+        $signUps = $user->getSignUps();
+        
+        $now = new \DateTime();
+        $status = array();
+        foreach($conferences as $conf){
+            if($conf->getDueDate() < $now){
+                $status[] = "已截止";
+            } else {
+                $find = false;
+                foreach($signUps as $signUp){
+                    if($conf == $signUp->getConference()){
+                        $find = true;
+                        break;
+                    }
+                }
+                if($find)
+                    $status[] = "已报名";
+                else 
+                    $status[] = "正常";
+            }
+        }
+        
+        $msg = $this->get('session')->getFlashBag()->get('msg');
+        return $this->render('AcmeDemoBundle:SignUp:signUp.html.twig', 
+                array(
+                    'conferences' => $conferences,
+                    'signUps' => $signUps,
+                    'status' => $status,
+                    'msg' => $msg
                 ));
-  
     }
 
     /**
@@ -55,25 +77,39 @@ class SignUpController extends Controller
      */
     public function signAction(Request $request, $id)
     {
-         $user = $this->getUser();
+        $user = $this->getUser();
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
-        }
-/*
-        return $this->render('FOSUserBundle:Profile:show.html.twig', array(
-            'user' => $user
-        ));
-        */
-         $signUp = new \Acme\DemoBundle\Entity\SignUp();  
- 
-          $conference = $this->getDoctrine()->getManager()
+        } 
+        $msg = "报名成功！";
+        
+        $conference = $this->getDoctrine()->getManager()
                 ->getRepository('AcmeDemoBundle:Conference')->find($id);
-        $signUp->setUser($user);
-        $signUp->setConference($conference);
-        $signUp->setSignUpDate(new \DateTime('today'));
-        $this->getDoctrine()->getManager()->persist($signUp);
-            $this->getDoctrine()->getManager()->flush();
-      
+        $now = new \DateTime();
+        if($conference == null){
+            $msg = "不存在会议！";
+        } else if($conference->getDueDate() < $now){
+            $msg = "报名已截止！";
+        } else {
+            $signUp = $this->getDoctrine()->getManager()
+                    ->getRepository('AcmeDemoBundle:SignUp')->findOneBy(array('user'=>$user, 'conference'=>$conference));
+            if($signUp == null){
+                $signUp = new \Acme\DemoBundle\Entity\SignUp(); 
+                $signUp->setUser($user);
+                $signUp->setConference($conference);
+                $signUp->setSignUpDate($now);
+                try{
+                    $this->getDoctrine()->getManager()->persist($signUp);
+                    $this->getDoctrine()->getManager()->flush();
+                } catch (\Exception $ex){
+                    $msg = "报名失败！";
+                }
+            } else {
+                $msg = "重复报名！";
+            }
+        }
+        $this->get('session')->getFlashBag()->add('msg', $msg);
+        
         return $this->redirect($this->generateUrl("_sign_show"));
     }
     public function dissignAction(Request $request, $id)

@@ -41,6 +41,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         //$user->setPassword('3NCRYPT3D-V3R51ON');
         $user->setEnabled(true);
         $user->setRoles(array('ROLE_ADMIN'));
+        $user->setPhone("15656590430");
 
         // Update the user
         $userManager->updateUser($user, true);

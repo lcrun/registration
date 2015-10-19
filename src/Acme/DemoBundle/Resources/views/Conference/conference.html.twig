@@ -27,7 +27,7 @@
     </script>
    
     {%for conf in conferences%}
-        {{conf.getId}} -- {{conf.conferenceName}} --  <a href="/admin/delete/{{conf.getId}}">删除会议</a>    <a href="/admin/down/{{conf.getId}}">下载报名表</a>    <a href=" /admin /sethome/{{{conf.getId}}">设为主页信息</a><br>
+        {{conf.getId}} -- {{conf.conferenceName}} --  <a href="/admin/delete/{{conf.getId}}">删除会议</a>    <a href="/admin/down/{{conf.getId}}">下载报名表</a>    <a href=" /admin/sethome/{{conf.getId}}">设为主页信息</a><br>
     {%endfor%}
        
     </div>
@@ -36,7 +36,7 @@
 
 
     
-    {% block javascripts_child %}
+{% block javascripts_child %}
     {% javascripts 
         '@AcmeDemoBundle/Resources/public/js/ueditor/ueditor.config.js'
         '@AcmeDemoBundle/Resources/public/js/ueditor/ueditor.all.js'%}
@@ -44,21 +44,16 @@
     {% endjavascripts %}
     
     <script type="text/javascript">
-        
-    
         UE.getEditor("form_detail", {
-     autoHeightEnabled: true,
-    autoFloatEnabled: true,
-   
-});
+           autoHeightEnabled: true,
+           autoFloatEnabled: true,
 
+        });
+        UE.getEditor("form_schedule", {
+           autoHeightEnabled: true,
+           autoFloatEnabled: true,
 
- UE.getEditor("form_schedule", {
-     autoHeightEnabled: true,
-    autoFloatEnabled: true,
-   
-});
-
+        });
     </script>
 
 {% endblock %}
