@@ -36,13 +36,13 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         // Create our user and set details
         $user = $userManager->createUser();
         $user->setName('admin');
-        $user->setEmail('sa514007@mail.ustc.edu.cn');
-        $user->setUsername('sa514007@mail.ustc.edu.cn');
+        $user->setEmail('ctl_admin@ustc.edu.cn');
+        $user->setUsername('admin');
         $user->setPlainPassword('adminpass');
         //$user->setPassword('3NCRYPT3D-V3R51ON');
         $user->setEnabled(true);
         $user->setRoles(array('ROLE_ADMIN'));
-        $user->setPhone("15656590430");
+        $user->setPhone("055163602247");
 
         // Update the user
         $userManager->updateUser($user, true);
