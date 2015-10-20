@@ -7,69 +7,43 @@ and open the template in the editor.
     Created on : 2014-7-15, 12:33:39
     Author     : wing
 */
-@font-face {
-  font-family: 'mal-font1';
-  font-style: normal;
-  font-weight: normal;
-  src: url('/bundles/malfunctionhome/fonts/gk5FxslNkTTHtojXrkp-xF1YPouZEKgzpqZW9wN-3Ek.woff');
-}
-@font-face {
-  font-family: 'mal-font2';
-  font-style: normal;
-  font-weight: normal;
-  src: url('/bundles/malfunctionhome/fonts/gk5FxslNkTTHtojXrkp-xONSK5BxN3NFS4EJkViHIqo.woff');
-}
-#leftside {
-    width: 202px;
-    float: left;
-    min-height: 400px;
-    padding: 0px 0px 0px 42px;
-}
 body {
-  font-family: 雅黑;
+  font-family: "宋体", 'samsun';
   width: 100%;
   font-size: 14px;
   min-width: 960px;
-  color: #101010;
+  background-color: #e5e5e5;
 }
 a, a:hover, a:visited, a:active {
   text-decoration: none;
   color: #101010;
 }
-.bordered {
-  border: dotted 1px transparent;
-}
-.main_center {
-  width: 960px;
-  margin: 0 auto;
-}
+
 ul,li {
   padding: 0;
   margin: 0;
 }
-.block_layout {
-  background-color: #f8f6f6;
-  border-radius: 2px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  padding: 1px 10px 1px 10px;
-  border: dotted 1px transparent;
-}
+
 #main {
   width: 100%;
   height: auto;
-  border: dotted 1px transparent;
 }
 /* 页面头部样式 */
 #header {
-  width: 1080px;
-  margin: 0 auto;
-  background-color: #efefef;
+  width: 100%;
+  background-color: #4c8d68;
   overflow: hidden;
 }
+
+.center_content{
+  width: 1080px;
+  margin: 0 auto;
+}
+
 #header .logo {
   float: left;
 }
+
 #header nav, #header nav ul, #header nav ul li {
   float: left;
 }
@@ -77,35 +51,59 @@ ul,li {
 #header nav ul li {
   display: block;
   margin: 0 10px;
-  line-height: 120px;
+  line-height: 80px;
   font-size: 24px;
   font-weight: bold;
 }
 #header nav ul li a {
   display: block;
-  height: 120px;
-  color: #000;
+  height: 80px;
+  color: #fff;
+  text-decoration: none;
 }
 #header nav ul li a:hover{
-  color: #000;
-  border-bottom: 2px solid #f70;
+  color: #fff;
+  border-bottom: 3px solid #fff;
+  text-decoration: none;
 }
+#header nav ul li a:linked,
+#header nav ul li a:focus{
+  text-decoration: none;
+}
+
 #header .user_info {
   float: right;
   margin-right: 20px;
-  margin-top: 44px;
+  margin-top: 24px;
 }
 
+#header .user_info .button-flat1 {
+  background-color: transparent;
+  font-weight: bold;
+  color: white;
+}
+
+#header .user_info .button-flat1:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
 
 /* 页面中部样式 */
 #middle {
   width: 1080px;
-  margin: 2px auto 0;
+  margin: 10px auto;
   overflow: hidden;
 }
 #middle .admin_right, #middle .pd_side_bar li {
-  background-color: #efefef;
+  background-color: #fff;
 }
+
+#leftside {
+    width: 202px;
+    float: left;
+    min-height: 400px;
+    padding: 0px 0px 0px 42px;
+}
+
 .admin_right h2 {
   margin: 0px;
   font-size: 18px;
@@ -128,7 +126,7 @@ ul,li {
 /* 页面尾部样式 */
 #footer {
   width: 1080px;
-  margin: 10px auto 0;
+  margin: 30px auto 0;
   text-align: center;
 }
 
