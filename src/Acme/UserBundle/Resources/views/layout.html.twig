@@ -1,0 +1,22 @@
+{% extends "AcmeDemoBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% set left_target = 'profile' %}
+{% set target = 'layout' %}
+
+{% block stylesheets_child %}{% endblock %}
+
+{% block left_navigation_more_add %}
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <li><a href="/signshow">报名情况</a></li>   
+        <li><a href="/profile/edit">修改个人信息</a></li> 
+        <li><a href="/resetting/request">修改登陆密码</a></li>   
+    {% endif %}
+{% endblock %}
+
+{% block fos_user_content %}
+{% endblock fos_user_content %}
+
+{% block javascripts_child %}
+{% endblock %}

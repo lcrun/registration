@@ -119,7 +119,7 @@ use Acme\DemoBundle\Entity\Backend;
                 
                 array_unshift($array, iconv('UTF8', 'GBK', $signUp->getUser()->getPhone()));      
                 array_unshift($array , iconv('UTF8', 'GBK', $signUp->getUser()->getEmail()));
-                array_unshift($array , iconv('UTF8', 'GBK', $signUp->getUser()->getUserName()));
+                array_unshift($array , iconv('UTF8', 'GBK', $signUp->getUser()->getName()));
               
                  fputcsv($fp, $array);
                 

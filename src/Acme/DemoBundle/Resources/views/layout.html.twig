@@ -1,4 +1,4 @@
-    {% extends "::base.html.twig" %}
+{% extends "::base.html.twig" %}
 
 {% block title %}{{ site_name }}{% endblock %}
 
@@ -26,8 +26,9 @@
 {% block body %}
     <div id="main">
         <div id="header">
+            <div class="center_content">
             {% block header %}
-                <img class='logo' src="http://img2.imgtn.bdimg.com/it/u=2640849608,549187206&fm=21&gp=0.jpg" width="200" />
+                <img class='logo' src="/logo.png"/>
                 <div class="user_info">
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         <span>您好，{{app.user.getName()}}</span>
@@ -35,7 +36,7 @@
                            class="button button-rounded button-flat2">退出账户</a>
                     {% else %}
                         <a href="{{ path('fos_user_security_login') }}" 
-                           class="button button-rounded button-flat1">登陆</a>
+                           class="button button-rounded button-flat1">登 录</a>
                     {% endif %}
                 </div>
                 <nav>
@@ -43,7 +44,7 @@
                         {% block navigation_more %}
                             <li><a  href="{{ path('acme_demo_homepage') }}">首页</a></li>
                             <li><a  href="{{ path('_notice') }}">报名</a></li>
-                           <li><a   href="/profile">个人中心</a></li>
+                            <li><a   href="/profile">个人中心</a></li>
                             {% block navigation_more_add %}
                                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                     {% if is_granted('ROLE_ADMIN') %}
@@ -57,6 +58,7 @@
                     </ul>     
                 </nav>
             {% endblock %}
+            </div>
         </div>
         <div id="middle">
             {% block left_navigation %}            
@@ -105,9 +107,6 @@
         '@AcmeDemoBundle/Resources/public/js/lib/jquery-1.9.0.min.js'
         '@AcmeDemoBundle/Resources/public/js/lib/bootstrap.js'
         '@AcmeDemoBundle/Resources/public/js/lib/jquery-ui.min.js'
-        '@AcmeDemoBundle/Resources/public/js/layout.js'
-
-    
     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
