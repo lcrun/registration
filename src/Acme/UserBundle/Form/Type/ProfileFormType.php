@@ -27,7 +27,8 @@ class ProfileFormType extends BaseType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $this->buildUserForm($builder, $options);
-          $builder->add('company', null, array('label' => '单位', 'translation_domain' => 'FOSUserBundle'))
+          $builder->add('name', null, array('label' => '姓名', 'translation_domain' => 'FOSUserBundle'))
+                  ->add('company', null, array('label' => '单位', 'translation_domain' => 'FOSUserBundle'))
                 ->add('position', null, array('label' => '职务', 'translation_domain' => 'FOSUserBundle'))
                 ->add('gender', 'choice',array('label' => '性别', 
                     'choices' => array('男' => '男', '女' => '女'),

@@ -11,23 +11,42 @@
 {% block content %}
   <div class="admin_right">
      <div class="content">
-        <br>
-<center><b>会议报名</b></center>
+    <h2>会议报名</h2>
+    <table>
+        <tr>
+            <td>序号</td>
+            <td>会议名称</td>
+            <td>报名状态</td>
+            <td>报名截止时间</td>
+            <td>操作</td>
+        </tr>
     {%set i=0%}
     {%for conf in conferences%}
-        {{conf.getId}} -- {{conf.conferenceName}} - {{status[i]}} -- {{conf.getDueDate|date('Y-m-d H:i')}}
-        {%if status[i]=='正常'%}<a href="/signup/{{conf.getId}}">报名</a>{%endif%}<br>
+        <tr>
+            <td>{{i + 1}}</td>
+            <td>{{conf.conferenceName}}</td>
+            <td>{{status[i]}}</td>
+            <td>{{conf.getDueDate|date('Y-m-d H:i')}}</td>
+            <td>{%if status[i]=='正常'%}<a href="/signup/{{conf.getId}}" class="signup_link" >报名</a>{%else%} -- {%endif%}</td>
         {%set i=i+1%}
+        </tr>
     {%endfor%}
+    </table>
     
     
 {%if msg%}{%for m in msg%}<p style="color: red;">{{m}}</p>{%endfor%}{%endif%}
 
 
-<center><b>已经报名</b></center>
+    <h2>已经报名</h2>
+    <table>
     {%for sign in signUps%}
-        {{sign.getId}} -- {{sign.conference.conferenceName}} --  <a href="/dissign/{{sign.getId}}">取消报名</a><br>
+        <tr>
+            <td>{{sign.getId}}</td>
+            <td>{{sign.conference.conferenceName}}</td>  
+            <td>{{sign.getConference.getDueDate|date('Y-m-d H:i')}}</td>
+            <td><a href="/dissign/{{sign.getId}}" class='dissign_link'>取消报名</a></td>
     {%endfor%}
+    </table>
     </div>
  </div>
 {% endblock %}

@@ -23,42 +23,33 @@
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
         <section class="loginForm"> 
             <header> 
-                <h1>登录</h1> 
+                <h2>登录</h2> 
             </header> 
             <div class="loginForm_content"> 
                 <fieldset> 
-                    <table>
-                    <tr>
-                    <td> 用户名：</td>
-                    <td>
-                        <div class="inputWrap">
-                                <input type="text" id="username" name="_username" 
-                                       value="{{ last_username }}" required="required"
-                                       placeholder="请输入电子邮箱" autocomplete="off"/>
-                        </div> 
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>密&nbsp;&nbsp;码：</td>
-                    <td>
-                        <div class="inputWrap"> 
-                            <input type="password" id="password" name="_password" 
+                    <div class="login_item">
+                        <label> 用户名：</label>
+                        <input type="text" id="username" name="_username" 
+                           value="{{ last_username }}" required="required"
+                           placeholder="请输入电子邮箱" autocomplete="off"/>
+                    </div>
+                    <div  class="login_item">
+                        <label>密码：</label>
+                        <input type="password" id="password" name="_password" 
                                    required placeholder="请输入密码" autocomplete="off"/>
-                        </div>
-                    </td>
-                    </tr>
-                    </table>
+                    </div>
                 </fieldset> 
                 <fieldset> 
                     <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
-                    <label for="remember_me">自动登录？</label>
+                    <label for="remember_me">自动登录</label>
+                    
                     {% if error %}
                         <span class="error_tip">{{ "邮箱或密码错误" }}</span>
                     {% endif %}
                 </fieldset> 
                 <fieldset class="fieldset_submit"> 
-                    <input type="submit" id="_submit" name="_submit" value="登录" />
-                    <a href="{{ path("fos_user_resetting_request") }}">忘记密码？</a>
+                    <input type="submit" id="_submit" name="_submit" value="登录" class="button button-rounded button-flat2" style='display: inline-block;'/>
+                    <a href="{{ path("fos_user_resetting_request") }}" class="button button-rounded button-flat2" style='display: inline-block;'>忘记密码？</a>
                     <p class="tip">提示：如遇到登录问题请联系现代教育技术中心</p>
                 </fieldset>
             </div> 

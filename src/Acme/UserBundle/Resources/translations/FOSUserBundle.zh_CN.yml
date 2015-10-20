@@ -14,7 +14,7 @@ group:
 # Security
 security:
     login:
-        username: 姓名
+        username: 用户名
         password: 密码
         remember_me: 自动登录
         submit: 登录
@@ -22,7 +22,7 @@ security:
 # Profile
 profile:
     show:
-        username: 姓名
+        username: 用户名
         email: 电子邮箱
     edit:
         submit: 更新
@@ -85,7 +85,7 @@ layout:
 # Form field labels
 form:
     group_name: 小组名称
-    username: 姓名
+    username: 用户名
     email: 电子邮箱
     current_password: 当前密码
     password: 密码

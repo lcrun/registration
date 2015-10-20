@@ -92,8 +92,8 @@ fos_user:
     use_username_form_type: true
     model_manager_name:     null
     from_email:
-        address:        sa514007@mail.ustc.edu.cn
-        sender_name:    lcrun
+        address:        ctl_admin@ustc.edu.cn
+        sender_name:    教师教学发展中心
     profile:
         form:
             type:               acme_user_profile
@@ -107,8 +107,8 @@ fos_user:
     registration:
         confirmation:
             from_email:
-                address:        sa514007@mail.ustc.edu.cn
-                sender_name:    lcrun
+                address:        ctl_admin@ustc.edu.cn
+                sender_name:    教师教学发展中心
             enabled:    false
             template:   FOSUserBundle:Registration:email.txt.twig
         form:
@@ -119,8 +119,8 @@ fos_user:
         token_ttl: 86400
         email:
             from_email:
-                address:        sa514007@mail.ustc.edu.cn
-                sender_name:    lcrun
+                address:        ctl_admin@ustc.edu.cn
+                sender_name:    教师教学发展中心
             template:   FOSUserBundle:Resetting:email.txt.twig
         form:
             type:               fos_user_resetting

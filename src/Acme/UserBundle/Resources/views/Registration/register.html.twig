@@ -4,9 +4,7 @@
     {%if errorTip%}
         <p>{{errorTip}}</p>
     {%else%}
-        <pre>
-        <center><b>欢迎报名！</b></center>
+        <h2>欢迎报名！</h2>
         {% include "FOSUserBundle:Registration:register_content.html.twig" %}
-         </pre>
     {%endif%}
 {% endblock fos_user_content %}

@@ -1,4 +1,22 @@
-.wrap { 
+.loginForm_content{
+    text-align: center;
+}
+.login_item {
+    margin: 8px 0;
+}
+.login_item label {
+    width: 6em;
+    text-align: right;
+}
+.submit_btn, .forget_pass {
+    font-size: 16px;
+    line-height: 1;
+    background-color: #eee;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+}
+
+/*.wrap { 
     margin: 130px auto; 
     width:380px; 
     overflow:hidden; 
@@ -132,4 +150,4 @@ fieldset label {
     margin-top: 15px;
     margin-left: -8px;
     color: #045f0a;
-}
+}*/
