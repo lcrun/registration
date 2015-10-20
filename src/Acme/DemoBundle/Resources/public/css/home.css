@@ -214,7 +214,6 @@ label[for='fos_user_registration_form_gender_0']:after, label[for='fos_user_regi
     margin-left: 130px;
 }
 .fos_user_profile_edit {
-    width: 300px;
     margin: 0 auto;
 }
 @-webkit-keyframes glowing {
