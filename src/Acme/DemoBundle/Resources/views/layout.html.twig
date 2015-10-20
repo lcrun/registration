@@ -1,4 +1,4 @@
-    {% extends "::base.html.twig" %}
+{% extends "::base.html.twig" %}
 
 {% block title %}{{ site_name }}{% endblock %}
 
@@ -27,7 +27,7 @@
     <div id="main">
         <div id="header">
             {% block header %}
-                <img class='logo' src="http://img2.imgtn.bdimg.com/it/u=2640849608,549187206&fm=21&gp=0.jpg" width="200" />
+                <img class='logo' src="http://202.38.70.204:8092/images/login_logo.png" width="200" />
                 <div class="user_info">
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         <span>您好，{{app.user.getName()}}</span>
@@ -43,7 +43,7 @@
                         {% block navigation_more %}
                             <li><a  href="{{ path('acme_demo_homepage') }}">首页</a></li>
                             <li><a  href="{{ path('_notice') }}">报名</a></li>
-                           <li><a   href="/profile">个人中心</a></li>
+                            <li><a   href="/profile">个人中心</a></li>
                             {% block navigation_more_add %}
                                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                     {% if is_granted('ROLE_ADMIN') %}
@@ -105,9 +105,6 @@
         '@AcmeDemoBundle/Resources/public/js/lib/jquery-1.9.0.min.js'
         '@AcmeDemoBundle/Resources/public/js/lib/bootstrap.js'
         '@AcmeDemoBundle/Resources/public/js/lib/jquery-ui.min.js'
-        '@AcmeDemoBundle/Resources/public/js/layout.js'
-
-    
     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}

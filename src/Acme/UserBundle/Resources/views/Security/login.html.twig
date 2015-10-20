@@ -1,8 +1,6 @@
-{% extends "AcmeDemoBundle::layout.html.twig" %}
+{% extends "AcmeUserBundle::layout.html.twig" %}
 
-{% trans_default_domain 'FOSUserBundle' %}
-
-{% set left_target = 'login' %}
+{% set left_target = 'profile' %}
 {% set target = 'login' %}
 
 {% block stylesheets_child %}
@@ -13,7 +11,11 @@
     {% endstylesheets %}
 {% endblock %}
 
+
 {% block title %}登录{% endblock %}
+
+{% block left_navigation_more_add %}
+{% endblock %}
 
 {% block fos_user_content %}
 <div class="wrap"> 
@@ -32,7 +34,7 @@
                         <div class="inputWrap">
                                 <input type="text" id="username" name="_username" 
                                        value="{{ last_username }}" required="required"
-                                       placeholder="请输入用户名或邮箱" autocomplete="off"/>
+                                       placeholder="请输入电子邮箱" autocomplete="off"/>
                         </div> 
                     </td>
                     </tr>
@@ -51,7 +53,7 @@
                     <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
                     <label for="remember_me">自动登录？</label>
                     {% if error %}
-                        <span class="error_tip">{{ error|trans({}, 'FOSUserBundle') }}</span>
+                        <span class="error_tip">{{ "邮箱或密码错误" }}</span>
                     {% endif %}
                 </fieldset> 
                 <fieldset class="fieldset_submit"> 
