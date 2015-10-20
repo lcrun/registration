@@ -82,8 +82,6 @@ class RegistrationController extends Controller
             //报名成功
             $result = $this->signUpSuccess($user);
             if($result['success']){
-                $url = $this->generateUrl('fos_user_profile_show');
-                return new RedirectResponse($url);
             } else {
                 $errorTip = $result['msg'];
             }
@@ -212,11 +210,14 @@ class RegistrationController extends Controller
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
+        
+        $url = $this->generateUrl('fos_user_profile_show');
+        return new RedirectResponse($url);
 
-        return $this->render('FOSUserBundle:Registration:confirmed.html.twig', array(
+        /*return $this->render('FOSUserBundle:Registration:confirmed.html.twig', array(
             'user' => $user,
             'targetUrl' => $this->getTargetUrlFromSession(),
-        ));
+        ));*/
     }
 
     private function getTargetUrlFromSession()
