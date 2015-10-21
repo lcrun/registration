@@ -1,7 +1,13 @@
 app:
-    resource: "@AppBundle/Controller/"
+    resource: "@AcmeDemoBundle/Controller/"
     type:     annotation
     prefix:   /registration
+app:
+    resource: "@AcmeUserBundle/Controller/"
+    type:     annotation
+    prefix:   /registration
+
+
 
 
 acme_user:
