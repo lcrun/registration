@@ -28,7 +28,7 @@
         <div id="header">
             <div class="center_content">
             {% block header %}
-                <img class='logo' src="/logo.png"/>
+                <img class='logo' src="logo.png"/>
                 <div class="user_info">
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         <span>您好，{{app.user.getName()}}</span>
