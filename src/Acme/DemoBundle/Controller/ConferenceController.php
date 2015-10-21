@@ -58,6 +58,46 @@ use Acme\DemoBundle\Entity\Backend;
         return $this->redirect($this->generateUrl("_new_conference"));
     } 
     
+    
+       public function modifyAction(Request $request, $id)
+    {
+        
+           
+        $conference = $this->getDoctrine()->getManager()
+                ->getRepository('AcmeDemoBundle:Conference')->find($id);
+        
+      //  $this->getDoctrine()->getManager()->remove($conference);
+      //  $this->getDoctrine()->getManager()->flush();
+        
+        
+      //  return $this->redirect($this->generateUrl("_new_conference"));
+        
+        
+        
+         $builder=$this->createFormBuilder($conference);
+        $form = $builder
+            ->add('conferenceName','text', array('label' => '会议名称 ：',))
+            ->add('dueDate', 'date', array('label' => '时间：',))
+            ->add('detail', 'textarea', array('label' => '会议详情：',))
+              ->add('schedule', 'textarea', array('label' => '日程安排 ',))
+            ->getForm();
+        
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            $this->getDoctrine()->getManager()->persist($conference);
+            $this->getDoctrine()->getManager()->flush();
+        }
+        
+        $conferences = $this->getDoctrine()->getManager()
+                ->getRepository('AcmeDemoBundle:Conference')->findAll();
+        return $this->render('AcmeDemoBundle:Conference:modifyConference.html.twig', array(
+            'form' => $form->createView(),
+            'conferences' => $conferences
+        ));
+    } 
+    
+    
+    
     public function setHomeAction($id){
         $backends = $this->getDoctrine()->getManager()
                 ->getRepository('AcmeDemoBundle:Backend')->findAll();
@@ -76,6 +116,7 @@ use Acme\DemoBundle\Entity\Backend;
     }
     
     
+  
     public function signUpDownloadAction($id)
     {
         
@@ -93,7 +134,9 @@ use Acme\DemoBundle\Entity\Backend;
                 'conference' => $id,
                
             ));
+            
             $fp = fopen('php://output', 'r+');
+            
 
             foreach ($signUps as $signUp) {
                 /*
