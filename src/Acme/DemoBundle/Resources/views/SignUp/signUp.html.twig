@@ -27,7 +27,7 @@
             <td>{{conf.conferenceName}}</td>
             <td>{{status[i]}}</td>
             <td>{{conf.getDueDate|date('Y-m-d H:i')}}</td>
-            <td>{%if status[i]=='正常'%}<a href="/signup/{{conf.getId}}" class="signup_link" >报名</a>{%else%} -- {%endif%}</td>
+            <td>{%if status[i]=='正常'%}<a href="/registration/signup/{{conf.getId}}" class="signup_link" >报名</a>{%else%} -- {%endif%}</td>
         {%set i=i+1%}
         </tr>
     {%endfor%}
@@ -44,7 +44,7 @@
             <td>{{sign.getId}}</td>
             <td>{{sign.conference.conferenceName}}</td>  
             <td>{{sign.getConference.getDueDate|date('Y-m-d H:i')}}</td>
-            <td><a href="/dissign/{{sign.getId}}" class='dissign_link'>取消报名</a></td>
+            <td><a href="/registration/dissign/{{sign.getId}}" class='dissign_link'>取消报名</a></td>
     {%endfor%}
     </table>
     </div>
