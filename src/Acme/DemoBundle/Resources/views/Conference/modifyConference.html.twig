@@ -27,7 +27,7 @@
     </script>
    
     {%for conf in conferences%}
-        {{conf.getId}} -- {{conf.conferenceName}} --  <a href="/registration/admin/delete/{{conf.getId}}">删除会议</a>    <a href="/admin/down/{{conf.getId}}">下载报名表</a>    <a href=" /registration/admin/sethome/{{conf.getId}}">设为主页信息</a><br>
+        {{conf.getId}} -- {{conf.conferenceName}} --  <a href="/registration/admin/delete/{{conf.getId}}">删除会议</a>    <a href="/registration/admin/down/{{conf.getId}}">下载报名表</a>  <a href="/registration/admin/modify/{{conf.getId}}">修改会议</a>       <a href=" /registration/admin/sethome/{{conf.getId}}">设为主页信息</a><br>
     {%endfor%}
        
     </div>
