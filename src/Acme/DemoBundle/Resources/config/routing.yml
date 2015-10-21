@@ -1,9 +1,3 @@
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
-    prefix:   /registration
-
-
 
 acme_demo_homepage:
     path:     /
