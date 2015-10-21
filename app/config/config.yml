@@ -83,10 +83,6 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
-    prefix:   /registration
 
 fos_user:
     db_driver: orm
