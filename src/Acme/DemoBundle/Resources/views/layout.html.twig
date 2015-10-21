@@ -44,7 +44,7 @@
                         {% block navigation_more %}
                             <li><a  href="{{ path('acme_demo_homepage') }}">首页</a></li>
                             <li><a  href="{{ path('_notice') }}">报名</a></li>
-                            <li><a   href="/profile">个人中心</a></li>
+                            <li><a   href="{{ path('_sign_show') }}"> 个人中心</a></li>
                             {% block navigation_more_add %}
                                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                     {% if is_granted('ROLE_ADMIN') %}

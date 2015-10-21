@@ -59,12 +59,32 @@ use Acme\DemoBundle\Entity\Backend;
     } 
     
     
-       public function modifyAction(Request $request, $id)
+       public function modifydoneAction(Request $request, $id)
     {
         
-           
+           /*
         $conference = $this->getDoctrine()->getManager()
                 ->getRepository('AcmeDemoBundle:Conference')->find($id);
+        $builder=$this->createFormBuilder($conference) ->getForm();;
+          $conferences = $this->getDoctrine()->getManager()
+                ->getRepository('AcmeDemoBundle:Conference')->findAll();
+        return $this->render('AcmeDemoBundle:Conference:modifyConference.html.twig', array(
+            'form' => $form->createView(),
+            'conferences' => $conferences
+        ));*/
+           
+           //return $this->redirect($this->generateUrl("_new_conference"));
+       }
+    
+       public function modifyAction(Request $request, $id)
+    {
+        $conference  = $this->getDoctrine()->getManager()
+                ->getRepository('AcmeDemoBundle:Conference')->find($id);
+      
+        //创建表单
+        $builder=$this->createFormBuilder($conference);
+           
+        
         
       //  $this->getDoctrine()->getManager()->remove($conference);
       //  $this->getDoctrine()->getManager()->flush();
@@ -74,25 +94,24 @@ use Acme\DemoBundle\Entity\Backend;
         
         
         
-         $builder=$this->createFormBuilder($conference);
+       //  $builder=$this->createFormBuilder($conference);
         $form = $builder
             ->add('conferenceName','text', array('label' => '会议名称 ：',))
             ->add('dueDate', 'date', array('label' => '时间：',))
             ->add('detail', 'textarea', array('label' => '会议详情：',))
               ->add('schedule', 'textarea', array('label' => '日程安排 ',))
             ->getForm();
-        
+   // var_dump(confrence();
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
-            $this->getDoctrine()->getManager()->persist($conference);
             $this->getDoctrine()->getManager()->flush();
         }
-        
+        /*
         $conferences = $this->getDoctrine()->getManager()
-                ->getRepository('AcmeDemoBundle:Conference')->findAll();
+                ->getRepository('AcmeDemoBundle:Conference')->findAll();*/
         return $this->render('AcmeDemoBundle:Conference:modifyConference.html.twig', array(
             'form' => $form->createView(),
-            'conferences' => $conferences
+            'conferenceId' => $id
         ));
     } 
     

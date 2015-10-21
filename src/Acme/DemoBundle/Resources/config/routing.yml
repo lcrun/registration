@@ -18,10 +18,14 @@ _notice:
 _new_conference:
     path:    /admin/new
     defaults: { _controller: AcmeDemoBundle:Conference:new}
-    
+
 _modify_conference:
     path:    /admin/modify/{id}
     defaults: { _controller: AcmeDemoBundle:Conference:modify}
+    
+_modify_done_conference:
+    path:    /admin/modifydone/{id}
+    defaults: { _controller: AcmeDemoBundle:Conference:modifydone}    
     
 _delete_conference:
     path:     /admin/delete/{id}

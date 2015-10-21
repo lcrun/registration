@@ -5,9 +5,10 @@
         <title>报名成功</title>
     </head>
     <body>
-        <h1>{{ user.getName }}，您好！</h1>
-        <p>您已成功报名了<span>{{conference.getConferenceName}}</span>会议，详情如下：</p>
-        {{conference.getDetail|raw}}
+        <h1>尊敬的{{ user.getName }}老师，您好！</h1>
+        <p>非常感谢您参加“<span>{{conference.getConferenceName}}</span>”（活动），您的报名已经成功，请及时关注报名网站推送的活动安排和参会注意事项，祝您参会愉快！
         <p><a href="{{ url }}">您可点击此链接查看报名信息。</a> </p>
+        
+        <p>教师教学发展中心</p>
     </body>
 </html>

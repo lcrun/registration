@@ -9,13 +9,16 @@
     
 {% endblock %}
 
+
+
+
 {% block content %}
  <div class="admin_right">
     <div class="content">
         <br>
-       _delete_conference
+     
         <center><b>修改会议</b></center>
-    <form action="{{ path('_modify_conference') }}" method="POST">
+    <form action=" /registration/admin/modify/{{conferenceId}}" method="POST">
         {{ form_widget(form) }}
         <div>
             <input type="submit" value="submit" />
@@ -26,13 +29,14 @@
        
     </script>
    
-    {%for conf in conferences%}
-        {{conf.getId}} -- {{conf.conferenceName}} --  <a href="/registration/admin/delete/{{conf.getId}}">删除会议</a>    <a href="/registration/admin/down/{{conf.getId}}">下载报名表</a>  <a href="/registration/admin/modify/{{conf.getId}}">修改会议</a>       <a href=" /registration/admin/sethome/{{conf.getId}}">设为主页信息</a><br>
-    {%endfor%}
+    
        
     </div>
 </div>
 {% endblock %}
+
+
+    
 
 
     
