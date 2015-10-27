@@ -62,6 +62,10 @@ class ResettingController extends Controller
             $tokenGenerator = $this->get('fos_user.util.token_generator');
             $user->setConfirmationToken($tokenGenerator->generateToken());
         }
+        $context = $this->get('router')->getContext();
+        $context->setHost($this->container->getParameter('router.request_context.host'));
+        $context->setScheme($this->container->getParameter('router.request_context.scheme'));
+        $context->setHttpPort($this->container->getParameter('router.request_context.http_port'));
 
         $this->get('fos_user.mailer')->sendResettingEmailMessage($user);
         $user->setPasswordRequestedAt(new \DateTime());
