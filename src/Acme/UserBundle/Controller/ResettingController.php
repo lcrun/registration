@@ -65,7 +65,7 @@ class ResettingController extends Controller
       $context = $this->get('router')->getContext();
        $context->setHost($this->container->getParameter('router.request_context.host'));
       $context->setScheme($this->container->getParameter('router.request_context.scheme'));
-     //  $context->setHttpPort($this->container->getParameter('router.request_context.http_port'));
+      $context->setHttpPort($this->container->getParameter('router.request_context.http_port'));
 
         $this->get('fos_user.mailer')->sendResettingEmailMessage($user);
         $user->setPasswordRequestedAt(new \DateTime());
