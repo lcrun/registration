@@ -7,9 +7,7 @@ acme_demo_connact_us:
     path:     /connact
     defaults: { _controller: AcmeDemoBundle:Default:connact}
     
-_mail:
-    path:     /mail/{name}
-    defaults: { _controller: AcmeDemoBundle:Default:mail }
+
  
 _notice:
     path:    /notice
@@ -56,3 +54,26 @@ _schedule:
 _set_home:
     path:    /admin/sethome/{id}
     defaults: { _controller: AcmeDemoBundle:Conference:setHome}
+
+_mail:
+    path:     /admin/mail
+    defaults: { _controller: AcmeDemoBundle:Default:mail }
+    
+_send_mail:
+    path:    /admin/sendmail
+    defaults: { _controller: AcmeDemoBundle:Default:sendmail }
+    
+    
+_load_mail:
+    path:    /admin/loadmail
+    defaults: { _controller: AcmeDemoBundle:Default:loadmail}
+    
+
+_mail_participated:
+    path:    /participated/{email}
+    defaults: { _controller: AcmeDemoBundle:Default:participated}  
+    
+    
+_download_participated:
+    path:    /admin/downparticipated
+    defaults: { _controller: AcmeDemoBundle:Default:downParticipated}  

@@ -50,6 +50,8 @@
                                     {% if is_granted('ROLE_ADMIN') %}
                                         <li><a 
                                             href="{{ path('_new_conference') }}">后台管理</a></li>
+                                        <li><a 
+                                            href="{{ path('_mail') }}">发送邮件</a></li>
                                     {% endif %}
                                 {% endif %}
                             {% endblock %}

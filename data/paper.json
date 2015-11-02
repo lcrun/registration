@@ -1,0 +1,98 @@
+{
+    "title": "首届新进教师研习营调查问卷",
+    "questions": [
+        {
+            "type": "SingleChoice",
+            "required": true,
+            "title": "本届研习营的活动安排总体？",
+            "options": [
+                "很合理",
+                "比较合理",
+                "不太合理",
+                "不合理"
+            ]
+        },
+        {
+           "type": "SingleChoice",
+            "required": true,
+            "title": "新进教师必要参加教学研习活动吗？",
+            "options": [
+                "有必要",
+                "不必要",
+                "不确定"
+            ]
+        },
+        {
+             "type": "SingleChoice",
+            "required": true,
+            "title": "新进教师研习活动时间安排应该是？",
+            "options": [
+                "一天",
+                "两天",
+                "一周",
+                "一个月",
+                "一个学期"
+            ]
+        },
+        {
+             "type": "SingleChoice",
+            "required": true,
+            "title": "新进教师研习活动对象应该是？",
+            "options": [
+                "全体新进教师",
+                "教学科研岗教师",
+                "纯教学岗教师",
+                "没有教学经历的教师"
+            ]
+        },
+        {
+           
+             "type": "MultipleChoice",
+            "required": true,
+            "title": "在研习活动中，您最关注哪方面的内容？(多选)",
+            "options": [
+                "教学管理",
+                "科研政策",
+                "人事政策",
+                "教学技能",
+                "交流座谈"
+            ]
+        },
+        {
+            "type": "TextareaCompletion",
+            "required": false,
+            "title": "您希望增加的研习活动有？"
+        },
+         {
+           
+             "type": "SingleChoice",
+            "required": true,
+            "title": "课堂教学演练活动（微课）对改善您的教学活动？",
+            "options": [
+                "非常有帮助",
+                "比较有帮助",
+                "一般",
+                "不是很有帮助",
+                "没帮助"
+            ]
+        },
+         {
+           
+             "type": "MultipleChoice",
+            "required": true,
+            "title": "您愿意参加教师教学发展中心组织的下列哪些活动？(多选)",
+            "options": [
+                "教学技能工作坊",
+                "主题午餐沙龙",
+                "教师教学发展论坛报告会",
+                "教学基层组织工作经验交流会"
+               
+            ]
+        },
+        {
+            "type": "TextareaCompletion",
+            "required": false,
+            "title": "您对本届研习营活动的意见和建议？"
+        }
+    ]
+}

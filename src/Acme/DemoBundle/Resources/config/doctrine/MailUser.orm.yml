@@ -1,0 +1,30 @@
+Acme\DemoBundle\Entity\MailUser:
+    type:  entity
+    table: mail_user
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:          
+
+        email:
+            type: string
+            length: '100'  
+
+    
+        name:
+            type: string
+            length: '20' 
+            
+        status:
+            type: string
+            length: '20' 
+            nullable: true
+            
+        participated:
+            type: boolean
+
+            
+            
+    lifecycleCallbacks: {  }

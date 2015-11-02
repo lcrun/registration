@@ -52,4 +52,3 @@ class Backend
         return $this->conference_id;
     }
 }
-
