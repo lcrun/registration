@@ -58,7 +58,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
     public function loadmailAction()
     {
     $mailusers = $this->getDoctrine()->getManager()
-                ->getRepository('AcmeDemoBundle:MailUser')->findAll(array());
+                ->getRepository('AcmeDemoBundle:MailUser')->findAll();
         
          if($mailusers != null){
             foreach($mailusers as $mailuser ){
