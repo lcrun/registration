@@ -78,6 +78,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
             $user = new MailUser();
             $user->setName(trim($code[0]));
              $user->setEmail(trim($code[1]));
+             // $user->setStatus('未提醒');
            //   $user->setMobile(trim($code[2]));
         //   $user->setGender(trim($code[3]));
          //   $user->setDepartment(trim($code[4]));
