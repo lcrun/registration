@@ -54,6 +54,7 @@ ul,li {
   line-height: 80px;
   font-size: 18px;
   font-weight: bold;
+  float:left;
 }
 #header  ul li a {
   display: block;
