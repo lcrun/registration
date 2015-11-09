@@ -16,6 +16,11 @@
     border: 1px solid #ddd;
 }
 
+.fieldset_submit{position:relative;}
+
+
+.fieldset_submit a{position:absolute; top:0px;}
+
 /*.wrap { 
     margin: 130px auto; 
     width:380px; 

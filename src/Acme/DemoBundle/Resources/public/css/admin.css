@@ -43,7 +43,7 @@ and open the template in the editor.
   font-weight: bold;
 }
 .admin_right {
-  width: 83%;
+  width: 79%;
   float: right;
   min-height: 600px;
   margin-top: 1px;
@@ -51,7 +51,7 @@ and open the template in the editor.
   border-radius: 2px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
-  padding: 25px;
+  padding: 2%;
   border: dotted 1px transparent;
 }
 .admin_right .admin_right_content {

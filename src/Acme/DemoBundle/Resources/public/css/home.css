@@ -32,7 +32,7 @@ ul,li {
 #header {
   width: 100%;
   background-color: #4c8d68;
-  overflow: hidden;
+ // overflow: hidden;
 }
 
 .center_content{
@@ -44,30 +44,30 @@ ul,li {
   float: left;
 }
 
-#header nav, #header nav ul, #header nav ul li {
+#header , #header  ul, #header  ul li {
   float: left;
 }
 
-#header nav ul li {
+#header ul li {
   display: block;
   margin: 0 10px;
   line-height: 80px;
   font-size: 18px;
   font-weight: bold;
 }
-#header nav ul li a {
+#header  ul li a {
   display: block;
   height: 80px;
   color: #fff;
   text-decoration: none;
 }
-#header nav ul li a:hover{
+#header ul li a:hover{
   color: #fff;
   border-bottom: 3px solid #fff;
   text-decoration: none;
 }
-#header nav ul li a:linked,
-#header nav ul li a:focus{
+#header ul li a:linked,
+#header  ul li a:focus{
   text-decoration: none;
 }
 

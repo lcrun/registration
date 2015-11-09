@@ -1,0 +1,6 @@
+ueditor上传图片文件，需要后台文件权限需要可写可读：
+$/registration$ 下：
+
+cd  web/ueditor/php    
+sudo chmod 777 upload
+sudo chmod 777 -R  upload/*
