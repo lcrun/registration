@@ -68,6 +68,7 @@ ul,li {
 #main {
   width: 100%;
   height: auto;
+  min-width:1080px; 
 }
 /* 页面头部样式 */
 #header {
@@ -95,7 +96,6 @@ ul,li {
   line-height: 80px;
   font-size: 18px;
   font-weight: bold;
-  float:left;
 }
 #header  ul li a {
   display: block;
