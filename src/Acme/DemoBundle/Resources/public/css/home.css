@@ -24,16 +24,24 @@ ul,li {
   margin: 0;
 }
 
+//#main {
+ // width: 100%;
+ // height: auto;
+ // min-width:1080px; 
+//}
+
 #main {
   width: 100%;
   height: auto;
-  min-width:1080px; 
+  max-width:1080px;
+  min-width:640px;
+  margin:0 auto;
 }
 /* 页面头部样式 */
 #header {
   width: 100%;
   background-color: #4c8d68;
- // overflow: hidden;
+  overflow: hidden;
 }
 
 .center_content{
@@ -90,7 +98,8 @@ ul,li {
 
 /* 页面中部样式 */
 #middle {
-  width: 1080px;
+  //width: 1080px;
+   width: 100%;
   margin: 10px auto;
   overflow: hidden;
 }
@@ -126,7 +135,8 @@ ul,li {
 
 /* 页面尾部样式 */
 #footer {
-  width: 1080px;
+  //width: 1080px;
+    width: 100%;
   margin: 30px auto 0;
   text-align: center;
 }
