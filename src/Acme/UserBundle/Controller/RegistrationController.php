@@ -72,29 +72,43 @@ class RegistrationController extends Controller
 
         $form->handleRequest($request);
         $user->setUsername($user->getEmail());
-
-        if ($form->isValid()) {
-            $event = new FormEvent($form, $request);
-            $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
-            
-            $userManager->updateUser($user);
-            
-            //报名成功
-            $result = $this->signUpSuccess($user);
-            if($result['success']){
-            } else {
-                $errorTip = $result['msg'];
-            }
-
-            if (null === $response = $event->getResponse()) {
-                $url = $this->generateUrl('fos_user_registration_confirmed');
-                $response = new RedirectResponse($url);
-            }
-
-            $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
-            return $response;
+        
+        
+           $ifuser  = $this->getDoctrine()->getManager()
+                ->getRepository('AcmeDemoBundle:User')->findByEmail($user->getEmail());
+            if($ifuser   != null ){
+            $errorTip = "用户已经注册过，请登陆后往“个人中心”注册会议！";
         }
+        
+        else{
+           
 
+                if ($form->isValid()) {
+                    $event = new FormEvent($form, $request);
+                    $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
+
+
+
+                    $userManager->updateUser($user);
+
+                    //报名成功
+                    $result = $this->signUpSuccess($user);
+                    if($result['success']){
+                    } else {
+                        $errorTip = $result['msg'];
+                    }
+
+                    if (null === $response = $event->getResponse()) {
+                        $url = $this->generateUrl('fos_user_registration_confirmed');
+                        $response = new RedirectResponse($url);
+                    }
+
+                    $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
+                    return $response;
+                }
+
+        }
+        
         return $this->render('FOSUserBundle:Registration:register.html.twig', array(
             'form' => $form->createView(),
             'errorTip' => $errorTip
