@@ -1,7 +1,8 @@
 ueditor文件下载后放在web文件夹下，把js文件放入demoBundle/Resources/public/js/ueditor下
  修改ueditor.config.js:   var URL =  "/registration/ueditor/"
 然后在应用ueditor的页面把相关的引用语句加上。
-
+web/ueditor/php/config.json
+ "imageUrlPrefix": "/registration/ueditor/", /* 图片访问路径前缀 */
 
 ueditor上传图片文件，需要后台文件权限需要可写可读：
 $/registration$ 下：
