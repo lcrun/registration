@@ -22,7 +22,7 @@
      *    var URL =  "/registration/ueditor/"
      * //window.UEDITOR_HOME_URL || getUEBasePath();
      */
-       window.UEDITOR_HOME_URL = "/registration";
+       window.UEDITOR_HOME_URL = "/registration/";
 
        var URL =  window.UEDITOR_HOME_URL || getUEBasePath();
 
