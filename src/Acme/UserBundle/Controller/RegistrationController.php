@@ -42,7 +42,15 @@ class RegistrationController extends Controller
     }
     
     public function registerAction(Request $request)
-    {
+    {  //已经登陆的用户直接跳到报名管理页面，无需再次进入注册页面
+         $user = $this->getUser();
+      //  if (!is_object($user) || !$user instanceof UserInterface) {
+      //      throw new AccessDeniedException('This user does not have access to this section.');
+      //  } 
+          if ($user != null) 
+                 return $this->redirect($this->generateUrl("_sign_show"));
+          
+          
         $conference = $this->getCurrentConference();
         $now = new \DateTime();
         $errorTip = null;
