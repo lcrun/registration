@@ -96,7 +96,7 @@ class RegistrationController extends Controller
                     $errorTip = "用户已经注册过，请登陆后往“个人中心”注册会议！";
                 }
                 
-               elseif (count($signUps) >=2 && $user->getCompany() != "中国科学技术大学") {
+               elseif (count($signUps) >= 5 && $user->getCompany() != "中国科学技术大学") {
                  $errorTip =  "本会议同一个学校最多只能报名5名老师";
            }
         
