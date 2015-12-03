@@ -1,5 +1,6 @@
 Acme\DemoBundle\Entity\SignUp:
     type: entity
+    repositoryClass: Acme\DemoBundle\Entity\Repository\SignUpRepository
     table: sign_up
     id:
         id:
