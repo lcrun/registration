@@ -16,9 +16,17 @@ class RegistrationFormType extends BaseType
                 ->add('company', null, array('label' => '学校', 'translation_domain' => 'FOSUserBundle','required'=>true))
                 ->add('address', null, array('label' => '单位', 'translation_domain' => 'FOSUserBundle','required'=>true))
                  ->add('position', null, array('label' => '职称', 'translation_domain' => 'FOSUserBundle','required'=>true))          
-                ->add('gender', 'choice',array('label' => '性别', 
-                    'choices' => array('男' => '男', '女' => '女'),
-                    'expanded' => true ))
+//     ->add('gender', 'choice',array('label' => '性别', 
+            //        'choices' => array(),
+            //        'expanded' => true ))
+                
+                                ->add('gender', 'choice', 
+                    array('label' => '性别',  
+                        'choices' => array(           
+                           '男' => '男', '女' => '女'
+                        ),
+                        'placeholder' => '请选择'
+                    ))
                 ->add('phone', null, array('label' => '手机', 'translation_domain' => 'FOSUserBundle'))
 
             ;
