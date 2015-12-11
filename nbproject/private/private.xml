@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/home/lcr/Project/registration/src/Acme/DemoBundle/Entity/Repository/SignUpRepository.php</file>
+            <file>file:/home/lcr/Project/registration/src/Acme/DemoBundle/Resources/config/doctrine/SignUp.orm.yml</file>
+            <file>file:/home/lcr/Project/registration/src/Acme/UserBundle/Controller/RegistrationController.php</file>
+            <file>file:/home/lcr/Project/registration/src/Acme/DemoBundle/Resources/views/Default/notice.html.twig</file>
+            <file>file:/home/lcr/Project/registration/src/Acme/DemoBundle/Resources/views/layout.html.twig</file>
+            <file>file:/home/lcr/Project/registration/vendor/friendsofsymfony/user-bundle/Resources/config/routing/registration.xml</file>
+            <file>file:/home/lcr/Project/registration/src/Acme/UserBundle/Form/Type/RegistrationFormType.php</file>
+            <file>file:/home/lcr/Project/registration/src/Acme/DemoBundle/Controller/SignUpController.php</file>
+        </group>
     </open-files>
 </project-private>

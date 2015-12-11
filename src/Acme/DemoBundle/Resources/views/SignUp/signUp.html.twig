@@ -43,10 +43,9 @@
         <tr>
             <td>{{sign.getId}}</td>
             <td>{{sign.conference.conferenceName}}</td>  
-            <td>{{sign.getConference.getDueDate|date('Y-m-d H:i')}}</td>
-            <td><a href="/registration/dissign/{{sign.getId}}" class='dissign_link'>取消报名</a></td>
+            <td>{%if sign.getConference.getId ==7%}<a href="/ueditor/php/upload/file/20151211/1449847570304801.pdf"  class="signup_link" >教研课题与方法通科更新修订版2015 (1).pdf</a>{%else%} -- {%endif%}</td>
+              <td><a href="/registration/dissign/{{sign.getId}}" class='dissign_link'>取消报名</a></td>
     {%endfor%}
-    </table>
-    </div>
+    </table> 
  </div>
 {% endblock %}
