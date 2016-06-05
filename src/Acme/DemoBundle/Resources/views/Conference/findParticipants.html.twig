@@ -1,0 +1,54 @@
+{% extends "AcmeDemoBundle::layout.html.twig" %}
+
+{% set target = 'handle' %}
+
+{% block title %}管理员主页{% endblock %}
+
+{% block stylesheets_child %}
+    
+{% endblock %}
+
+
+{% block content %}
+<div class="primary">
+        <h2>参加会议名单</h2>
+        <!-- 改过的哦 -->
+      	<table class="participants_tab">
+      		<tr>
+      			<th>姓名</th>
+      			<th>性别</th>
+      			<th>电话</th>
+      			<th>学校</th>
+      			<th>邮件</th>
+      			<th>职称</th>
+      			<th>学院</th>
+      		</tr>
+      		{%for signUp in signUps %}
+			<tr>
+      			<td>{{signUp.user.name}}</td>
+      			<td>{{signUp.user.gender}}</td>
+      			<td>{{signUp.user.phone}}</td>
+      			<td>{{signUp.user.company}}</td>
+      			<td>{{signUp.user.email}}</td>
+      			<td>{{signUp.user.position}}</td>
+      			<td>{{signUp.user.address}}</td>
+      		</tr>
+		    {%endfor%}
+      		
+      	</table>
+      
+<!-- 加载编辑器的容器 -->
+    <script id="container" name="content" type="text/plain">
+       
+    </script>
+</div>
+{% endblock %}
+
+
+    
+
+
+    
+{% block javascripts_child %}
+
+{% endblock %}

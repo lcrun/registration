@@ -1,0 +1,23 @@
+{% extends "AcmeDemoBundle::layout.html.twig" %}
+
+{% set target = 'index' %}
+
+{% block stylesheets_child %}
+    
+{% endblock %}
+
+{% block content %}
+   <div class="primary">
+    <p>
+      {%if conference%}
+            {{conference.getDetail|raw}}
+      {%else%}
+            {{"暂无会议！"}}
+      {%endif%}
+      <span>&nbsp;下一步&nbsp;&nbsp;&nbsp;</span><a href="/notice" style='text-decoration: underline;'>注册会议</a>
+    </p>
+   </div>
+
+
+{% endblock %}
+

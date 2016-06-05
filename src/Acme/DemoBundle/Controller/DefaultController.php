@@ -5,10 +5,14 @@ namespace Acme\DemoBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Acme\DemoBundle\Entity\MailUser;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
  class DefaultController extends Controller
 {
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $backend = $this->getDoctrine()->getManager()
                 ->getRepository('AcmeDemoBundle:Backend')->findOneBy(array());
@@ -18,25 +22,73 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
                     ->getRepository('AcmeDemoBundle:Conference')->find($backend->getConferenceId());
         }
         
-        return $this->render('AcmeDemoBundle:Default:index.html.twig',
+        return $this->renderRegView($request, 'AcmeDemoBundle:Default:index.html.twig',
             array('conference' => $conference));
        
     }
-    
-    public function connactAction()
+    //登录那个方法的controller，每个页面都需要，所以写成公用的方法
+    protected function renderRegView($request, $twig, array $data=null)
     {
-        return $this->render('AcmeDemoBundle:Default:connact.html.twig');
+        /** @var $session \Symfony\Component\HttpFoundation\Session\Session */
+        $session = $request->getSession();
+
+        if (class_exists('\Symfony\Component\Security\Core\Security')) {
+            $authErrorKey = Security::AUTHENTICATION_ERROR;
+            $lastUsernameKey = Security::LAST_USERNAME;
+        } else {
+            // BC for SF < 2.6
+            $authErrorKey = SecurityContextInterface::AUTHENTICATION_ERROR;
+            $lastUsernameKey = SecurityContextInterface::LAST_USERNAME;
+        }
+
+        // get the error if any (works with forward and redirect -- see below)
+        if ($request->attributes->has($authErrorKey)) {
+            $error = $request->attributes->get($authErrorKey);
+        } elseif (null !== $session && $session->has($authErrorKey)) {
+            $error = $session->get($authErrorKey);
+            $session->remove($authErrorKey);
+        } else {
+            $error = null;
+        }
+
+        if (!$error instanceof AuthenticationException) {
+            $error = null; // The value does not come from the security component.
+        }
+
+        // last username entered by the user
+        $lastUsername = (null === $session) ? '' : $session->get($lastUsernameKey);
+
+        if ($this->has('security.csrf.token_manager')) {
+            $csrfToken = $this->get('security.csrf.token_manager')->getToken('authenticate')->getValue();
+        } else {
+            // BC for SF < 2.4
+            $csrfToken = $this->has('form.csrf_provider')
+                ? $this->get('form.csrf_provider')->generateCsrfToken('authenticate')
+                : null;
+        }
+        if(!$data){
+            $data=array();
+        }
+        $data['last_username'] = $lastUsername;
+        $data['error'] = $error;
+        $data['csrf_token'] = $csrfToken;
+        return $this->render($twig, $data);
+    }
+    
+    public function connactAction(Request $request)
+    {
+        return $this->renderRegView($request, 'AcmeDemoBundle:Default:connact.html.twig');
     }
     
      
-    public function noticeAction()
+    public function noticeAction(Request $request)
     {
-        return $this->render('AcmeDemoBundle:Default:notice.html.twig');
+        return $this->renderRegView($request, 'AcmeDemoBundle:Default:notice.html.twig');
     }
   
     
     
-    public function scheduleAction()
+    public function scheduleAction(Request $request)
     {   
         $backend = $this->getDoctrine()->getManager()
                 ->getRepository('AcmeDemoBundle:Backend')->findOneBy(array());
@@ -45,17 +97,17 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
             $conference = $this->getDoctrine()->getManager()
                     ->getRepository('AcmeDemoBundle:Conference')->find($backend->getConferenceId());
         }
-        return $this->render('AcmeDemoBundle:Default:schedule.html.twig',
+        return $this->renderRegView($request, 'AcmeDemoBundle:Default:schedule.html.twig',
             array('conference' => $conference));
     }
     
     
-      public function mailAction()
+      public function mailAction(Request $request)
     {
-                 return $this->render('AcmeDemoBundle:Mail:mail.html.twig');
+                 return $this->renderRegView($request, 'AcmeDemoBundle:Mail:mail.html.twig');
     }
     
-    public function loadmailAction()
+    public function loadmailAction(Request $request)
     {
     $mailusers = $this->getDoctrine()->getManager()
                 ->getRepository('AcmeDemoBundle:MailUser')->findAll();
@@ -92,13 +144,13 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
         }
          $this->getDoctrine()->getManager()->flush();
          
-         return $this->render('AcmeDemoBundle:Mail:mail.html.twig');
+         return $this->renderRegView($request, 'AcmeDemoBundle:Mail:mail.html.twig');
         
         
     }
     
     
-    public function sendmailAction()
+    public function sendmailAction(Request $request)
     {
         $mailer = $this->get('mailer');
         
@@ -142,12 +194,12 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
                     ->getRepository('AcmeDemoBundle:Conference')->find($backend->getConferenceId());
         }
         
-        return $this->render('AcmeDemoBundle:Default:index.html.twig',
+        return $this->renderRegView($request, 'AcmeDemoBundle:Default:index.html.twig',
             array('conference' => $conference));
     }
     
     
-      public function participatedAction($email)
+      public function participatedAction($email,Request $request)
     {
           $user =$this->getDoctrine()->getManager()
                     ->getRepository('AcmeDemoBundle:MailUser')->findOneByEmail($email);
@@ -155,12 +207,12 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
           $user->setParticipated(true);
            $this->getDoctrine()->getManager()->flush();
            
-          return $this->render('AcmeDemoBundle:Mail:notice.html.twig'); 
+          return $this->renderRegView($request, 'AcmeDemoBundle:Mail:notice.html.twig'); 
     }
     
     
     
-     public function downParticipatedAction()
+     public function downParticipatedAction(Request $request)
     {
         
       

@@ -1,0 +1,28 @@
+
+  
+{% extends "AcmeDemoBundle::layout.html.twig" %}
+
+{% set target = 'handle' %}
+
+{% block title %}管理员主页{% endblock %}
+
+{% block stylesheets_child %}
+    
+{% endblock %}
+
+{% block content %}
+ <div class="admin_right">
+    <div class="content">
+        <br>
+       
+        <center><b>邮件</b></center>
+    
+       <a  href="{{ path('_load_mail') }}">后台加载邮件信息</a>
+     <a  href="{{ path('_send_mail') }}">群发邮件</a>
+          <a  href="{{ path('_download_participated') }}">下载参加名单</a>
+       
+    </div>
+</div>
+{% endblock %}
+
+

@@ -7,13 +7,6 @@
 
 {% block stylesheets_child %}{% endblock %}
 
-{% block left_navigation_more_add %}
-    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-        <li><a  href="{{ path('_sign_show') }}" >报名情况</a></li>    
-        <li><a  href="{{ path('fos_user_profile_edit') }}" >修改个人信息</a></li>  
-        <li><a  href="{{ path('fos_user_resetting_request') }}" >修改登陆密码</a></li>    
-    {% endif %}
-{% endblock %}
 
 {% block fos_user_content %}
 {% endblock fos_user_content %}

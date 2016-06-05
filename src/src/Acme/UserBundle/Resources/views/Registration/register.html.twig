@@ -1,0 +1,10 @@
+{% extends "AcmeUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+    {%if errorTip%}
+        <p>{{errorTip}}</p>
+    {%else%}
+        <h2>欢迎报名！</h2>
+        {% include "FOSUserBundle:Registration:register_content.html.twig" %}
+    {%endif%}
+{% endblock fos_user_content %}

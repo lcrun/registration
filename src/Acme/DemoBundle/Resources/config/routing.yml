@@ -1,12 +1,11 @@
 
 acme_demo_homepage:
     path:     /
-    defaults: { _controller: AcmeDemoBundle:Default:index }
-    
+    defaults: { _controller: AcmeDemoBundle:Default:index}
+
 acme_demo_connact_us:
     path:     /connact
     defaults: { _controller: AcmeDemoBundle:Default:connact}
-    
 
  
 _notice:
@@ -77,3 +76,7 @@ _mail_participated:
 _download_participated:
     path:    /admin/downparticipated
     defaults: { _controller: AcmeDemoBundle:Default:downParticipated}  
+
+_findParticipants:
+    path:    /findParticipants/{id}
+    defaults: { _controller: AcmeDemoBundle:Conference:findParticipants}

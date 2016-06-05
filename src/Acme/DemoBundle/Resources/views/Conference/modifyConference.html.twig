@@ -6,32 +6,30 @@
 {% block title %}管理员主页{% endblock %}
 
 {% block stylesheets_child %}
-    
+    {% stylesheets 
+        '@AcmeDemoBundle/Resources/public/css/addconference.css' 
+        filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
 {% endblock %}
 
 
 
 
 {% block content %}
- <div class="admin_right">
-    <div class="content">
-        <br>
-     
-        <center><b>修改会议</b></center>
-    <form action=" /registration/admin/modify/{{conferenceId}}" method="POST">
-        {{ form_widget(form) }}
-        <div>
-            <input type="submit" value="submit" />
-        </div>
-    </form>    
+<div class="primary">
+        <h2>新建会议</h2>
+        <!-- 改过的哦 -->
+        <form action="/admin/modify/{{conferenceId}}" method="POST">
+            {{ form_widget(form) }}
+            <div>
+                <input type="submit" value="submit" />
+            </div>
+        </form>    
 <!-- 加载编辑器的容器 -->
     <script id="container" name="content" type="text/plain">
        
     </script>
-   
-    
-       
-    </div>
 </div>
 {% endblock %}
 

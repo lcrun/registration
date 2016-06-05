@@ -38,6 +38,12 @@ use Acme\DemoBundle\Entity\Backend;
         
         $conferences = $this->getDoctrine()->getManager()
                 ->getRepository('AcmeDemoBundle:Conference')->findAll();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+        // 如果点击提交了，直接跳转到后台管理首页
+            return $this->redirectToRoute('_new_conference');
+        }
+
         return $this->render('AcmeDemoBundle:Conference:conference.html.twig', array(
             'form' => $form->createView(),
             'conferences' => $conferences
@@ -106,6 +112,13 @@ use Acme\DemoBundle\Entity\Backend;
         if ($form->isSubmitted()) {
             $this->getDoctrine()->getManager()->flush();
         }
+
+        if ($form->isSubmitted() && $form->isValid()) {
+        // 如果点击提交了，直接跳转到后台管理首页
+            return $this->redirectToRoute('_new_conference');
+        }
+
+
         /*
         $conferences = $this->getDoctrine()->getManager()
                 ->getRepository('AcmeDemoBundle:Conference')->findAll();*/
@@ -195,5 +208,33 @@ use Acme\DemoBundle\Entity\Backend;
 
         return $response;
     }
-    
+    //显示出参会人员的名单
+    public function findParticipantsAction($id)
+    {
+        
+        $em = $this->getDoctrine()->getManager();
+
+        $signUps = $em->getRepository("AcmeDemoBundle:SignUp")->findBy(array(
+            'conference' => $id,
+        ));
+            
+        foreach ($signUps as $signUp) {
+           
+            $array = array();
+            array_unshift($array ,  $signUp->getUser()->getAddress());
+            array_unshift($array , $signUp->getUser()->getPosition());
+            array_unshift($array , $signUp->getUser()-> getCompany());
+            array_unshift($array , $signUp->getUser()->getGender());
+            
+            array_unshift($array, $signUp->getUser()->getPhone());      
+            array_unshift($array ,$signUp->getUser()->getEmail());
+            array_unshift($array ,$signUp->getUser()->getName());
+            
+        }
+        return $this->render('AcmeDemoBundle:Conference:findParticipants.html.twig', array(
+            'array' =>$array,
+            'signUps'=>$signUps
+        ));
+
+    }
 }

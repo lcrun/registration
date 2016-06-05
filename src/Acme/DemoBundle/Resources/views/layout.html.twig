@@ -5,12 +5,11 @@
 {% block stylesheets %}
     {% stylesheets 
         '@AcmeDemoBundle/Resources/public/css/lib/jquery-ui.min.css' 
-        '@AcmeDemoBundle/Resources/public/css/lib/bootstrap.min.css' 
-        '@AcmeDemoBundle/Resources/public/css/lib/bootstrap-theme.min.css' 
         '@AcmeDemoBundle/Resources/public/css/lib/font-awesome.min.css' 
-        '@AcmeDemoBundle/Resources/public/css/lib/button.min.css' 
         '@AcmeDemoBundle/Resources/public/css/home.css' 
         '@AcmeDemoBundle/Resources/public/css/admin.css' 
+        '@AcmeDemoBundle/Resources/public/css/reset.css'
+        '@AcmeDemoBundle/Resources/public/css/common.css'
 
         filter='cssrewrite' %}
         <link rel="stylesheet" href="{{ asset_url }}" />
@@ -24,80 +23,148 @@
 {% endblock %}
 
 {% block body %}
-    <div id="main">
-        <div id="header">
-            <div class="center_content">
-            {% block header %}
-                <img class='logo' src="/registration/logo.png"/>
-                <div class="user_info">
-                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                        <span>您好，{{app.user.getName()}}</span>
-                        <a href="{{ path('fos_user_security_logout') }}" 
-                           class="button button-rounded button-flat2">退出账户</a>
-                    {% else %}
-                        <a href="{{ path('fos_user_security_login') }}" 
-                           class="button button-rounded button-flat1">登 录</a>
-                    {% endif %}
-                </div>
-                <nav>
-                    <ul>
-                        {% block navigation_more %}
-                            <li><a  href="{{ path('acme_demo_homepage') }}">首页</a></li>
-                            <li><a  href="{{ path('_notice') }}">报名</a></li>
-                            <li><a   href="{{ path('_sign_show') }}"> 个人中心</a></li>
-                            {% block navigation_more_add %}
-                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                    {% if is_granted('ROLE_ADMIN') %}
-                                        <li><a 
-                                            href="{{ path('_new_conference') }}">后台管理</a></li>
-                                        <li><a 
-                                            href="{{ path('_mail') }}">发送邮件</a></li>
-                                    {% endif %}
-                                {% endif %}
-                            {% endblock %}
-                            <li><a    href="{{ path('acme_demo_connact_us') }}">联系我们</a></li>
-                        {% endblock %}
-                    </ul>     
-                </nav>
-            {% endblock %}
-            </div>
-        </div>
-        <div id="middle">
-            {% block left_navigation %}            
-            <div class=admin_left>
-                <div class="pd_side_bar">
-                    <ul>
-                        <li id="pd_menu_1" >
-                            <a href="{{ path('_notice') }}">注册会议</a></li>
-                         <li id="pd_menu_2" >
-                            <a href="{{ path('_schedule') }}">简介摘要</a></li>
-                        {% block left_navigation_more_add %}
-                        {% endblock %}
-                    </ul>
-                </div>
-            </div>
-            {% endblock  %}           
-             {% block content %}        
-            <div class="admin_right">
-                {% for type, messages in app.session.flashbag.all() %}
-                    {% for message in messages %}
-                        <div class="flash-{{ type }}">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                {% endfor %}
-                {% block fos_user_content %}
-                {% endblock fos_user_content %}
-            </div>             
-            {% endblock %}
-        </div>
+    <div class="wrapper">
 
-        <div id="footer">
-            {% block footer %}
-            
-                <p>版权所有&nbsp;©&nbsp; 中国科学技术大学教务处   现代教育技术中心</p > 
-             
+        <div class="header">
+            <div class="logo">
+                <img src="{{  asset('bundles/acmedemo/images/logo.jpg')  }}">
+                <div class="title"><span>教学发展中心报名系统</span></div>
+            </div>
+            <div class="navwrap">
+                <ul class="nav1">
+                    <li class="active"><a href="{{ path('acme_demo_homepage') }}">首页</a></li>
+                    <li><a href="{{ path('acme_demo_homepage') }}" id="conference_intro">会议简介</a></li>
+                    <li><a href="javascript:void(0)" id="personal_center">个人中心</a></li>
+                    <li><a href="javascript:void(0)" id="contact_us">联系我们</a></li>
+                    {% block navigation_more_add %}
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <li><a 
+                                    href="{{ path('_new_conference') }}">后台管理</a>
+                                </li>
+                            {% endif %}
+                        {% endif %}
+                    {% endblock %}
+                    <li><a href="http://ctl.ustc.edu.cn/">教学发展中心</a></li>
+                </ul>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <p id="welcome">欢迎您，{{app.user.getName()}} <a href="{{ path('fos_user_security_logout') }}">退出</a></p>        
+                {% endif %}   
+            </div>
+        </div>
+        
+        <div class="content">
+            {% block left_navigation %}
+                <div class="leftcolumn">
+                    
+                    <div class="module">
+                        <p class="module-title">会议图片</p>
+                        <div class="module-content picture">
+                            <a href="http://ctl.ustc.edu.cn/index.php/newslist/40-2016-04-12-08-11-48" target="_blank" id="pic_1" class="pic"><img src="{{  asset('bundles/acmedemo/images/2016512.jpg')  }}" alt="吴能表教授做客我校教师教学发展论坛" title="吴能表教授做客我校教师教学发展论坛" /></a>
+                            <a href="http://ctl.ustc.edu.cn/index.php/newslist/42-2016-05-17-08-23-38" target="_blank" id="pic_2" class="pic"><img src="{{  asset('bundles/acmedemo/images/2016517.jpg')  }}" alt="张学新教授做客我校教学发展中心论坛" title="张学新教授做客我校教学发展中心论坛" /></a>
+                            <a href="http://ctl.ustc.edu.cn/index.php/newslist/42-2016-05-17-08-23-38" target="_blank" id="pic_3" class="pic"><img src="{{  asset('bundles/acmedemo/images/20165172.jpg')  }}" alt="张学新教授做客我校教学发展中心论坛" title="张学新教授做客我校教学发展中心论坛" /></a>
+                            <div class="pic_slide">
+                                <div class="slide_flag" id="slide_1"></div>
+                                <div class="slide_flag" id="slide_2"></div>
+                                <div class="slide_flag" id="slide_3"></div>
+                            </div> 
+                        </div>
+                    </div>
+                    {% block module_difference %}
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <div class="module" id="diff_module">
+                                <p class="module-title">个人信息</p>
+                                <div class="module-content">
+                                    <ul class="module_content_diff_operating">
+                                        <li><a  href="{{ path('_sign_show') }}" >报名情况</a></li>    
+                                        <li><a  href="{{ path('fos_user_profile_edit') }}" >修改个人信息</a></li>  
+                                        <li><a  href="{{ path('fos_user_resetting_request') }}" >修改登陆密码</a></li>
+                                    </ul>
+                                </div>           
+                            </div>
+                        {% else %}
+                            <div class="module">
+                                <p class="module-title">注册参会</p>
+                                <div class="module-content">
+                                    <form action="{{ path("fos_user_security_check") }}" method="post">
+                                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                                        <div class="userinput">
+                                            <label for="username">用户名：</label>
+                                            <input type="text" id="username" name="_username" 
+                                                   value="{{ last_username }}" required="required"
+                                                   placeholder="邮箱 或 用户名" autocomplete="off"/>
+                                        </div>
+                                        <div class="userinput">
+                                            <label for="password">密码：</label>
+                                            <input type="password" id="password" name="_password" required placeholder="请输入密码" autocomplete="off"/>
+                                        </div>
+                                        <div class="userinput" id="form_remeber">
+                                            <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
+                                            <label for="remember_me">自动登录</label>
+
+                                            {% if error %}
+                                                <span class="highlight">{{ "邮箱或密码错误" }}</span>
+                                            {% endif %}
+                                          
+                                        </div>
+                                        <div class="userinput btngroup">
+                                            <a href="{{ path("fos_user_resetting_request") }}" class="forgetBtn">忘记密码?</a>
+                                            <input type="submit" id="_submit" name="_submit" value="登录"/>
+                                            <a href="{{ path('_notice') }}" class="btn register_btn">注册</a>
+                                        </div>
+                                    </form>
+                                </div> 
+                            </div>      
+                        {% endif %}
+                    {% endblock %}
+                    <div class="module" id="contact_module">
+                        <p class="module-title">联系我们</p>
+                        <div class="module-content">
+                            <div class="contact">联系电话：0551-63602247</div>
+                            <div class="contact">地址：中科大东区老图书馆208</div>
+                            <div class="contact">QQ：11714208</div>
+                            <div class="contact">邮件：wuqiang@ustc.edu.cn</div>
+                        </div> 
+                    </div>
+                    <div class="module">
+                        <p class="module-title">往期会议</p>
+                        <div class="module-content">
+                            <ul class="conferenceList">
+                                <li><a href="http://ctl.ustc.edu.cn/index.php/newslist/42-2016-05-17-08-23-38" target="_blank">对分课堂：中国原创的课堂教学新模式</a></li>
+                                <li><a href="http://ctl.ustc.edu.cn/index.php/newslist/40-2016-04-12-08-11-48" target="_blank">教学设计的要素与逻辑</a></li>
+                                <li><a href="http://ctl.ustc.edu.cn/index.php/noticelist/34-2015-12-01-06-57-47" target="_blank">教学研究与方法</a></li>
+                            </ul>
+                        </div> 
+                    </div>
+                    {% block left_module_more_add %}
+                    {% endblock %}
+                </div>
             {% endblock %}
+
+            {% block content %}
+                <div class="primary">
+                    {% for type, messages in app.session.flashbag.all() %}
+                        {% for message in messages %}
+                            <div class="flash-{{ type }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% block fos_user_content %}
+                    {% endblock fos_user_content %}
+                </div>
+            {% endblock %}
+        </div>
+        <div class="footer">
+            版权所有@：中国科学技术大学教务处 现代教育技术中心
+        </div>
+        <div id="login_tips">
+            <p class="login_title">提示</p>
+                <div class="warn_img">
+                    <img src="{{  asset('bundles/acmedemo/images/login_tips.jpg')  }}" />
+                    <p class="warn_word">您还没有登录，请先登录！</p>
+                </div>
+            <div id="btn_suround"><button class="btn sure_btn">确定</button></div>
         </div>
     </div>
         
@@ -107,8 +174,7 @@
 {% block javascripts %}
     {% javascripts 
         '@AcmeDemoBundle/Resources/public/js/lib/jquery-1.9.0.min.js'
-        '@AcmeDemoBundle/Resources/public/js/lib/bootstrap.js'
-        '@AcmeDemoBundle/Resources/public/js/lib/jquery-ui.min.js'
+        '@AcmeDemoBundle/Resources/public/js/common.js'
     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}

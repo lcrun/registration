@@ -7,15 +7,16 @@
 {% endblock %}
 
 {% block content %}
-   <div class="admin_right">
-    <div class="content">
+   <div class="primary">
+    <p>
       {%if conference%}
             {{conference.getDetail|raw}}
       {%else%}
             {{"暂无会议！"}}
       {%endif%}
-      <span>下一步&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="/registration/notice" style='text-decoration: underline;'>注册会议</a>
-    </div>
+      </p><br/>
+      <p><span>下一步&nbsp;&nbsp;&nbsp;</span><a href="/notice" style='text-decoration: underline;'>注册会议</a></p>
+    
    </div>
 
 

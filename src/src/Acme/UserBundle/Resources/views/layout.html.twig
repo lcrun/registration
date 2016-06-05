@@ -1,0 +1,31 @@
+{% extends "AcmeDemoBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% set left_target = 'profile' %}
+{% set target = 'layout' %}
+
+{% block stylesheets_child %}{% endblock %}
+
+{% block module_difference %}
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+        <div class="module" id="diff_module">
+            <p class="module-title">个人信息</p>
+            <div class="module-content">
+                <ul class="module_content_diff_operating">
+                	<li><a  href="{{ path('_sign_show') }}" >报名情况</a></li>    
+        			<li><a  href="{{ path('fos_user_profile_edit') }}" >修改个人信息</a></li>  
+        			<li><a  href="{{ path('fos_user_resetting_request') }}" >修改登陆密码</a></li>
+                </ul>
+            </div>           
+        </div>
+               
+    {% endif %}
+{% endblock %}
+
+{% block fos_user_content %}
+{% endblock fos_user_content %}
+
+{% block javascripts_child %}
+{% endblock %}

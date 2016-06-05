@@ -20,6 +20,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
 /**
  * Controller managing the resetting of the password
@@ -32,11 +35,59 @@ class ResettingController extends Controller
     /**
      * Request reset user password: show form
      */
-    public function requestAction()
+    public function requestAction(Request $request)
     {
-        return $this->render('FOSUserBundle:Resetting:request.html.twig');
+        return $this->renderRegView($request,'FOSUserBundle:Resetting:request.html.twig');
     }
 
+    //登录那个方法的controller，每个页面都需要，所以写成公用的方法
+    protected function renderRegView($request, $twig, array $data=null)
+    {
+        /** @var $session \Symfony\Component\HttpFoundation\Session\Session */
+        $session = $request->getSession();
+
+        if (class_exists('\Symfony\Component\Security\Core\Security')) {
+            $authErrorKey = Security::AUTHENTICATION_ERROR;
+            $lastUsernameKey = Security::LAST_USERNAME;
+        } else {
+            // BC for SF < 2.6
+            $authErrorKey = SecurityContextInterface::AUTHENTICATION_ERROR;
+            $lastUsernameKey = SecurityContextInterface::LAST_USERNAME;
+        }
+
+        // get the error if any (works with forward and redirect -- see below)
+        if ($request->attributes->has($authErrorKey)) {
+            $error = $request->attributes->get($authErrorKey);
+        } elseif (null !== $session && $session->has($authErrorKey)) {
+            $error = $session->get($authErrorKey);
+            $session->remove($authErrorKey);
+        } else {
+            $error = null;
+        }
+
+        if (!$error instanceof AuthenticationException) {
+            $error = null; // The value does not come from the security component.
+        }
+
+        // last username entered by the user
+        $lastUsername = (null === $session) ? '' : $session->get($lastUsernameKey);
+
+        if ($this->has('security.csrf.token_manager')) {
+            $csrfToken = $this->get('security.csrf.token_manager')->getToken('authenticate')->getValue();
+        } else {
+            // BC for SF < 2.4
+            $csrfToken = $this->has('form.csrf_provider')
+                ? $this->get('form.csrf_provider')->generateCsrfToken('authenticate')
+                : null;
+        }
+        if(!$data){
+            $data=array();
+        }
+        $data['last_username'] = $lastUsername;
+        $data['error'] = $error;
+        $data['csrf_token'] = $csrfToken;
+        return $this->render($twig, $data);
+    }
     /**
      * Request reset user password: submit form and send email
      */
@@ -88,7 +139,7 @@ class ResettingController extends Controller
             return new RedirectResponse($this->generateUrl('fos_user_resetting_request'));
         }
 
-        return $this->render('FOSUserBundle:Resetting:checkEmail.html.twig', array(
+        return $this->renderRegView($request,'FOSUserBundle:Resetting:checkEmail.html.twig', array(
             'email' => $email,
         ));
     }
@@ -139,7 +190,7 @@ class ResettingController extends Controller
             return $response;
         }
 
-        return $this->render('FOSUserBundle:Resetting:reset.html.twig', array(
+        return $this->renderRegView($request,'FOSUserBundle:Resetting:reset.html.twig', array(
             'token' => $token,
             'form' => $form->createView(),
         ));

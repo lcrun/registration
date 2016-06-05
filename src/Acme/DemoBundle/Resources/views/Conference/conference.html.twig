@@ -6,31 +6,36 @@
 {% block title %}管理员主页{% endblock %}
 
 {% block stylesheets_child %}
-    
+    {% stylesheets 
+        '@AcmeDemoBundle/Resources/public/css/addconference.css' 
+        filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
 {% endblock %}
 
 {% block content %}
- <div class="admin_right">
-    <div class="content">
-        <br>
-       
-        <center><b>新建会议</b></center>
-    <form action="{{ path('_new_conference') }}" method="POST">
+<div class="primary">
+    <h2>新建会议</h2>
+    <form action="{{ path('_new_conference') }}" method="POST" class="conferenceForm">
         {{ form_widget(form) }}
         <div>
             <input type="submit" value="submit" />
         </div>
     </form>    
-<!-- 加载编辑器的容器 -->
+    <!-- 加载编辑器的容器 -->
     <script id="container" name="content" type="text/plain">
        
     </script>
    
     {%for conf in conferences%}
-        {{conf.getId}} -- {{conf.conferenceName}} --  <a href="/registration/admin/delete/{{conf.getId}}">删除会议</a>    <a href="/registration/admin/down/{{conf.getId}}">下载报名表</a>  <a href="/registration/admin/modify/{{conf.getId}}">修改会议</a>    <a href=" /registration/admin/sethome/{{conf.getId}}">设为主页信息</a><br>
+    <div class="conferenceList">
+        <p>
+            <!-- 修改会议和设为主页信息是改过的 -->
+            {{conf.getId}} -- {{conf.conferenceName}} --  <a href="/registration/admin/delete/{{conf.getId}}">删除会议</a>    <a href="/registration/admin/down/{{conf.getId}}">下载报名表</a>  <a href="/admin/modify/{{conf.getId}}">修改会议</a>    <a href=" /admin/sethome/{{conf.getId}}">设为主页信息</a>    <a href="/findParticipants/{{conf.getId}}">报名名单</a>
+        </p>
+    </div>
     {%endfor%}
        
-    </div>
 </div>
 {% endblock %}
 

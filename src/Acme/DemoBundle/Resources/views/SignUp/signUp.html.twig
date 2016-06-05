@@ -5,50 +5,68 @@
 {% block title %}报名{% endblock %}
 
 {% block stylesheets_child %}
-    
 {% endblock %}
+
 
 {% block content %}
-  <div class="admin_right">
-     <div class="content">
-    <h2>会议报名</h2>
-    <table>
-        <tr>
-            <td>序号</td>
-            <td>会议名称</td>
-            <td>报名状态</td>
-            <td>报名截止时间</td>
-            <td>操作</td>
-        </tr>
-    {%set i=0%}
-    {%for conf in conferences%}
-        <tr>
-            <td>{{i + 1}}</td>
-            <td>{{conf.conferenceName}}</td>
-            <td>{{status[i]}}</td>
-            <td>{{conf.getDueDate|date('Y-m-d H:i')}}</td>
-            <td>{%if status[i]=='正常'%}<a href="/registration/signup/{{conf.getId}}" class="signup_link" >报名</a>{%else%} -- {%endif%}</td>
-        {%set i=i+1%}
-        </tr>
-    {%endfor%}
-    </table>
-    
-    
-{%if msg%}{%for m in msg%}<p style="color: red;">{{m}}</p>{%endfor%}{%endif%}
+   <div class="primary">
+        <h2>会议报名</h2>
+        <table class="conference_tab">
+            <tr>
+                <th>序号</th>
+                <th>会议名称</th>
+                <th>报名状态</th>
+                <th>报名截止时间</th>
+                <th>操作</th>
+            </tr>
 
+            {%set i=0%}
+            {%for conf in conferences%}
 
-    <h2>已经报名</h2>
-    <table>
-    {%for sign in signUps%}
-        <tr>
-            <td>{{sign.getId}}</td>
-            <td>{{sign.conference.conferenceName}}</td>  
-            <td>{{sign.getConference.getDueDate|date('Y-m-d H:i')}}</td> 
-            <td>{%if sign.conference.getId ==7%}<a href="/registration/ueditor/php/upload/file/20151211/1449847570304801.pdf"  class="signup_link" >教研课题与方法通科更新修订版2015 (1).pdf</a>
-                <a <a  href="/registration/ueditor/php/upload/file/20151214/1450070215770675.pdf" class="signup_link" >互联网时代的实体课堂构建及其对教师的挑战.pdf</a>{%else%} -- {%endif%}</td>
-              <td><a href="/registration/dissign/{{sign.getId}}" class='dissign_link'>取消报名</a></td>
-    {%endfor%}
-    </table> 
- </div>
-</div>
+            <tr>
+                <td>{{i + 1}}</td>
+                <td>{{conf.conferenceName}}</td>
+                <td>{{status[i]}}</td>
+                <td>{{conf.getDueDate|date('Y-m-d H:i')}}</td>
+                <td>
+                    {%if status[i]=='正常'%}
+                        <a href="/signup/{{conf.getId}}" class="signup_link" >报名</a>
+                    {%else%}
+                     -- 
+                    {%endif%}
+                </td>
+                {%set i=i+1%}
+            </tr>
+            {%endfor%}
+        </table>
+
+        {%if msg%}
+            {%for m in msg%}
+                <h4>{{m}}</h4>
+            {%endfor%}
+        {%endif%}
+        <br/><br/><br/>
+        <h2>已经报名</h2>
+        <table class="conference_tab">
+        {%for sign in signUps%}
+            <tr>
+                <td>{{sign.getId}}</td>
+                <td>{{sign.conference.conferenceName}}</td>  
+                <td>{{sign.getConference.getDueDate|date('Y-m-d H:i')}}</td> 
+                <td>
+                    {%if sign.conference.getId ==7%}
+                        <a href="/registration/ueditor/php/upload/file/20151211/1449847570304801.pdf"  class="signup_link" >教研课题与方法通科更新修订版2015 (1).pdf</a>
+                        <a href="/registration/ueditor/php/upload/file/20151214/1450070215770675.pdf" class="signup_link" >互联网时代的实体课堂构建及其对教师的挑战.pdf</a>
+                    {%else%}
+                     -- 
+                    {%endif%}
+                </td>
+                  <td><a href="/dissign/{{sign.getId}}" class='dissign_link'>取消报名</a></td>
+            </tr>
+        {%endfor%}
+        </table> 
+
+   </div>
+
 {% endblock %}
+
