@@ -20,12 +20,9 @@
 	padding: 0px;
 }
 
-.primary #edui282_iframeholder{
-	width:250px;
+#edui282{
+	width:98% !important;
 }
-.primary #edui1_iframeholder{
-	width:100px;
-}
-.priamry #edui1_toolbarbox{
-
+#edui1{
+	width:98% !important;
 }
