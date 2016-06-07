@@ -280,18 +280,6 @@ input[type='text'],input[type='password']{
 	padding-left: 50px;
 	overflow: hidden;
 }
-.primary #edui282_toolbarbox div,.priamry #edui1_toolbarbox{
-	padding: 0px;
-}
-.primary #edui282_iframeholder{
-	width:250px;
-}
-.primary #edui1_iframeholder{
-	width:100px;
-}
-.priamry #edui1_toolbarbox{
-
-}
 .primary input{
 	width: 50%;
 }
