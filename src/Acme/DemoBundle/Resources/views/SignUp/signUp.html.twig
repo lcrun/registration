@@ -30,7 +30,7 @@
                 <td>{{conf.getDueDate|date('Y-m-d H:i')}}</td>
                 <td>
                     {%if status[i]=='正常'%}
-                        <a href="/signup/{{conf.getId}}" class="signup_link" >报名</a>
+                        <a href="/registration/signup/{{conf.getId}}" class="signup_link" >报名</a>
                     {%else%}
                      -- 
                     {%endif%}
@@ -61,7 +61,7 @@
                      -- 
                     {%endif%}
                 </td>
-                  <td><a href="/dissign/{{sign.getId}}" class='dissign_link'>取消报名</a></td>
+                  <td><a href="/registration/dissign/{{sign.getId}}" class='dissign_link'>取消报名</a></td>
             </tr>
         {%endfor%}
         </table> 

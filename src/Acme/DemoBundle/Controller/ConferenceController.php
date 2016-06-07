@@ -218,21 +218,7 @@ use Acme\DemoBundle\Entity\Backend;
             'conference' => $id,
         ));
             
-        foreach ($signUps as $signUp) {
-           
-            $array = array();
-            array_unshift($array ,  $signUp->getUser()->getAddress());
-            array_unshift($array , $signUp->getUser()->getPosition());
-            array_unshift($array , $signUp->getUser()-> getCompany());
-            array_unshift($array , $signUp->getUser()->getGender());
-            
-            array_unshift($array, $signUp->getUser()->getPhone());      
-            array_unshift($array ,$signUp->getUser()->getEmail());
-            array_unshift($array ,$signUp->getUser()->getName());
-            
-        }
         return $this->render('AcmeDemoBundle:Conference:findParticipants.html.twig', array(
-            'array' =>$array,
             'signUps'=>$signUps
         ));
 
