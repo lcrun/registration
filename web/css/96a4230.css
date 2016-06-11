@@ -1,0 +1,28 @@
+#form_schedule{
+	padding: 0px;
+}
+#form_dueDate{
+	display: inline-block;
+	padding-left: 0;
+	padding-top: 0;
+}
+.primary .conferenceForm input[type="submit"]{
+	margin-top: 10px;
+}
+.primary .conferenceForm div div{
+	padding-left: 2px;
+}
+.conferenceList p{
+	margin-top: 0px;
+	padding: 0px 15px;
+}
+#form_detail,#form_detail div,#form_schedule,#form_schedule div{
+	padding: 0px;
+}
+
+#edui282{
+	width:98% !important;
+}
+#edui1{
+	width:98% !important;
+}

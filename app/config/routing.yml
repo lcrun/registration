@@ -16,6 +16,9 @@ acme_demo:
     resource: "@AcmeDemoBundle/Resources/config/routing.yml"
     prefix:   /
 
+acme_demo_homepage_2:
+    path:     /login
+    defaults: { _controller: AcmeDemoBundle:Default:index}
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
