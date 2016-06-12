@@ -7,6 +7,9 @@ acme_demo_connact_us:
     path:     /connact
     defaults: { _controller: AcmeDemoBundle:Default:connact}
 
+acme_demo_about_conference:
+    path:    /introduction
+    defaults: { _controller: AcmeDemoBundle:Conference:introduction}
  
 _notice:
     path:    /notice
@@ -27,6 +30,7 @@ _modify_done_conference:
 _delete_conference:
     path:     /admin/delete/{id}
     defaults: { _controller: AcmeDemoBundle:Conference:delete}
+
     
 _sign_show:
     path:     /signshow

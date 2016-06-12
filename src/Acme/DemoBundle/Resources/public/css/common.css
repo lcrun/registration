@@ -236,6 +236,7 @@ input[type='text'],input[type='password']{
 	text-indent:25px;
 	padding: 5px 20px;
 	line-height: 200%;
+	font-size: 14px;
 }
 .highlight {
     color: #cd0a0a;
