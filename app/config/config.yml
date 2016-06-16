@@ -112,7 +112,7 @@ fos_user:
             from_email:
                 address:        ctl_admin@ustc.edu.cn
                 sender_name:    教师教学发展中心
-            enabled:    false
+            enabled:    true
             template:   FOSUserBundle:Registration:email.txt.twig
         form:
             type:               acme_user_registration
