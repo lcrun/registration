@@ -152,11 +152,7 @@ class SignUpController extends Controller
             $msg = "不存在会议！";
         } else if($conference->getDueDate() < $now){
             $msg = "报名已截止！";
-        } else if(count($signUps) >=5 && ($user->getCompany() != "中国科学技术大学" || $user->getCompany() != "合肥工业大学")){
-            
-               $msg=  "本会议同一个学校最多只能报名5名老师";
-       
-        }else {
+        } else {
             $signUp = $this->getDoctrine()->getManager()
                     ->getRepository('AcmeDemoBundle:SignUp')->findOneBy(array('user'=>$user, 'conference'=>$conference));
             if($signUp == null){
@@ -174,6 +170,16 @@ class SignUpController extends Controller
                 $msg = "重复报名！";
             }
         }
+
+        //之前对非科大老师有限制
+        /*
+            else if(count($signUps) >=5 && ($user->getCompany() != "中国科学技术大学" || $user->getCompany() != "合肥工业大学")){
+            
+               $msg=  "本会议同一个学校最多只能报名5名老师";
+       
+        }
+        */
+
         $this->get('session')->getFlashBag()->add('msg', $msg);
         
         return $this->redirect($this->generateUrl("_sign_show"));
