@@ -268,13 +268,15 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
     {
         
         $em = $this->getDoctrine()->getManager();
-
+        $query = $em->createQuery('SELECT u FROM AcmeDemoBundle:User u INNER JOIN AcmeDemoBundle:SignUp s with u.id = s.user WHERE s.conference = :id')->setParameter('id',$id);
+        $users = $query->getResult();
+        /*
         $signUps = $em->getRepository("AcmeDemoBundle:SignUp")->findBy(array(
             'conference' => $id,
-        ));
+        ));*/
             
         return $this->render('AcmeDemoBundle:Conference:findParticipants.html.twig', array(
-            'signUps'=>$signUps
+            'users'=>$users
         ));
 
     }

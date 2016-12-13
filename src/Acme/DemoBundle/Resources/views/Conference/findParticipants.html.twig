@@ -23,15 +23,15 @@
       			<th>职称</th>
       			<th>学院</th>
       		</tr>
-      		{%for signUp in signUps %}
+      		{%for user in users %}
 			<tr>
-      			<td>{{signUp.user.name}}</td>
-      			<td>{{signUp.user.gender}}</td>
-      			<td>{{signUp.user.phone}}</td>
-      			<td>{{signUp.user.company}}</td>
-      			<td>{{signUp.user.email}}</td>
-      			<td>{{signUp.user.position}}</td>
-      			<td>{{signUp.user.address}}</td>
+      			<td>{{user.name}}</td>
+      			<td>{{user.gender}}</td>
+      			<td>{{user.phone}}</td>
+      			<td>{{user.company}}</td>
+      			<td>{{user.email}}</td>
+      			<td>{{user.position}}</td>
+      			<td>{{user.address}}</td>
       		</tr>
 		    {%endfor%}
       		

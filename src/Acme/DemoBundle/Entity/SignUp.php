@@ -32,14 +32,14 @@ class SignUp
     
     
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="signUps")
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="signUps")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;
     
     
     /**
-     * @ORM\ManyToOne(targetEntity="Conference", inversedBy="signUps")
+     * @ORM\ManyToMany(targetEntity="Conference", inversedBy="signUps")
      * @ORM\JoinColumn(name="conference_id", referencedColumnName="id")
      */
     protected $conference;
