@@ -217,15 +217,19 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
         }*/
 
         $response = new StreamedResponse(function () use ($em, $id) {
-            $signUps = $em->getRepository("AcmeDemoBundle:SignUp")->findBy(array(
+            //这种方式在超过63条时会有问题
+            /*$signUps = $em->getRepository("AcmeDemoBundle:SignUp")->findBy(array(
                 'conference' => $id,
                
-            ));
-            
+            ));*/
+            //采用dql的方式可以多查
+            $query = $em->createQuery('SELECT u FROM AcmeDemoBundle:User u INNER JOIN AcmeDemoBundle:SignUp s with u.id = s.user WHERE s.conference = :id')->setParameter('id',$id);
+            $users = $query->getResult();
+
             $fp = fopen('php://output', 'r+');
             
 
-            foreach ($signUps as $signUp) {
+            foreach ($users as $user) {
                 /*
                 //shuzhu这数组这 中 取出列
                 $answers = array_column($result->getAnswer(), 'answer');
@@ -242,14 +246,14 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
                 fputcsv($fp, $formatAnswers);*/
                 
                 $array = array();
-                array_unshift($array , iconv('UTF8', 'GBK', $signUp->getUser()->getAddress()));
-                array_unshift($array , iconv('UTF8', 'GBK', $signUp->getUser()->getPosition()));
-                array_unshift($array , iconv('UTF8', 'GBK', $signUp->getUser()-> getCompany()));
-                array_unshift($array , iconv('UTF8', 'GBK', $signUp->getUser()->getGender()));
+                array_unshift($array , iconv('UTF8', 'GBK', $user->getAddress()));
+                array_unshift($array , iconv('UTF8', 'GBK', $user->getPosition()));
+                array_unshift($array , iconv('UTF8', 'GBK', $user-> getCompany()));
+                array_unshift($array , iconv('UTF8', 'GBK', $user->getGender()));
                 
-                array_unshift($array, iconv('UTF8', 'GBK', $signUp->getUser()->getPhone()));      
-                array_unshift($array , iconv('UTF8', 'GBK', $signUp->getUser()->getEmail()));
-                array_unshift($array , iconv('UTF8', 'GBK', $signUp->getUser()->getName()));
+                array_unshift($array, iconv('UTF8', 'GBK', $user->getPhone()));      
+                array_unshift($array , iconv('UTF8', 'GBK', $user->getEmail()));
+                array_unshift($array , iconv('UTF8', 'GBK', $user->getName()));
               
                  fputcsv($fp, $array);
                 
