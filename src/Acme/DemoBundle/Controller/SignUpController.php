@@ -44,7 +44,7 @@ class SignUpController extends Controller
         $conferences = $this->getDoctrine()->getManager()
                 ->getRepository('AcmeDemoBundle:Conference')->findAll();
         $signUps = $user->getSignUps();
-        
+
         $now = new \DateTime();
         $status = array();
         foreach($conferences as $conf){
@@ -143,11 +143,11 @@ class SignUpController extends Controller
         $now = new \DateTime();
                         //   $signUps =array(); 
        if($user != null) {
-      $signUps =  $this->getDoctrine()
-                                        ->getManager()
-                                        ->getRepository('AcmeDemoBundle:SignUp')
-                                        ->querySignUpByUser($user,$conference);  }
-        
+            $signUps =  $this->getDoctrine()
+                            ->getManager()
+                            ->getRepository('AcmeDemoBundle:SignUp')
+                            ->querySignUpByUser($user,$conference);  }
+
         if($conference == null){
             $msg = "不存在会议！";
         } else if($conference->getDueDate() < $now){

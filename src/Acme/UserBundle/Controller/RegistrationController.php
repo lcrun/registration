@@ -112,6 +112,9 @@ class RegistrationController extends Controller
         if($conference == null || $conference->getDueDate()<$now){
             $errorTip = "暂无可会议可报名！";
         }
+
+        
+
         
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
         $formFactory = $this->get('fos_user.registration.form.factory');
@@ -142,41 +145,43 @@ class RegistrationController extends Controller
            
        //   $signUps =array(); 
        if($user != null) {
-      $signUps =  $this->getDoctrine()
-                                        ->getManager()
-                                        ->getRepository('AcmeDemoBundle:SignUp')
-                                        ->querySignUpByUser($user,$conference);  }
-
-            if($ifuser   != null ){
-                    $errorTip = "用户已经注册过，请登陆后往“个人中心”注册会议！";
-                }else{
-           
-
-                if ($form->isValid()) {
-                    $event = new FormEvent($form, $request);
-                    $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
+            $signUps =  $this->getDoctrine()
+                            ->getManager()
+                            ->getRepository('AcmeDemoBundle:SignUp')
+                            ->querySignUpByUser($user,$conference);  }
 
 
-
-                    $userManager->updateUser($user);
-
-                    //报名成功
-                    $result = $this->signUpSuccess($user);
-                    if($result['success']){
-                    } else {
-                        $errorTip = $result['msg'];
-                    }
-
-                    if (null === $response = $event->getResponse()) {
-                        $url = $this->generateUrl('fos_user_registration_confirmed');
-                        $response = new RedirectResponse($url);
-                    }
-
-                    $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
-                    return $response;
-                }
-
+        if (count($signUps) >=30) {
+            $errorTip = '本会议只限30人，人数已达到上线！';
         }
+
+        if($ifuser   != null ){
+            $errorTip = "用户已经注册过，请登陆后往“个人中心”注册会议！";
+        }else{
+   
+        if ($form->isValid()) {
+            $event = new FormEvent($form, $request);
+            $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
+
+            $userManager->updateUser($user);
+
+            //报名成功
+            $result = $this->signUpSuccess($user);
+            if($result['success']){
+            } else {
+                $errorTip = $result['msg'];
+            }
+
+            if (null === $response = $event->getResponse()) {
+                $url = $this->generateUrl('fos_user_registration_confirmed');
+                $response = new RedirectResponse($url);
+            }
+
+            $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
+            return $response;
+        }
+
+    }
         
         return $this->renderRegView($request,'FOSUserBundle:Registration:register.html.twig', array(
             'form' => $form->createView(),
@@ -192,7 +197,10 @@ class RegistrationController extends Controller
         }
         $signUp = $this->getDoctrine()->getManager()
                     ->getRepository('AcmeDemoBundle:SignUp')->findOneBy(array('user'=>$user, 'conference'=>$conference));
-        if($signUp == null){
+
+        if($user->getCompany() != "中国科学技术大学" ){ //只有科大教师可以报名
+            return array('success'=>false, 'msg'=>'本次会议只针对科大教师！');
+        }else if($signUp == null){
             $signUp = new \Acme\DemoBundle\Entity\SignUp(); 
             $signUp->setUser($user);
             $signUp->setConference($conference);
