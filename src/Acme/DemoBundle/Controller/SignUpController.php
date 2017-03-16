@@ -152,7 +152,11 @@ class SignUpController extends Controller
             $msg = "不存在会议！";
         } else if($conference->getDueDate() < $now){
             $msg = "报名已截止！";
-        } else {
+        }else if($user->getCompany() != "中国科学技术大学" ){ //只有科大教师可以报名
+           $msg=  "本会议只针对科大教师";
+        }else if (count($signUps) >=30) {
+            $msg=  "本会议只限30人，人数已达到上线";
+        }else {
             $signUp = $this->getDoctrine()->getManager()
                     ->getRepository('AcmeDemoBundle:SignUp')->findOneBy(array('user'=>$user, 'conference'=>$conference));
             if($signUp == null){
@@ -179,6 +183,7 @@ class SignUpController extends Controller
        
         }
         */
+        
 
         $this->get('session')->getFlashBag()->add('msg', $msg);
         
